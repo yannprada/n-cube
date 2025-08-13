@@ -1,14 +1,14 @@
 extends Camera3D
 
-const zoom_sensitivity: float = 0.05
-const camera_clamp: Vector2 = Vector2(1, 10)
+const MOUSE_SENSITIVITY: float = 0.2
+const Z_CLAMP: Vector2 = Vector2(1, 10)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
 	## Handle zoom
 	if Input.is_action_just_pressed("MWU"):
-		position.z -= zoom_sensitivity
+		position.z -= MOUSE_SENSITIVITY
 	if Input.is_action_just_pressed("MWD"):
-		position.z += zoom_sensitivity
+		position.z += MOUSE_SENSITIVITY
 	# Prevent zooming past the cube
-	position.z = clamp(position.z, camera_clamp.x, camera_clamp.y)
+	position.z = clamp(position.z, Z_CLAMP.x, Z_CLAMP.y)

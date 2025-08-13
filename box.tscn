@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://sfnso3xn3aj6"]
+[gd_scene load_steps=4 format=3 uid="uid://sfnso3xn3aj6"]
 
 [ext_resource type="Script" uid="uid://cjlni44mylk21" path="res://box.gd" id="1_g2tbl"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_g2tbl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq5cr"]
+albedo_color = Color(0, 0, 0, 1)
+
 [node name="Box" type="Node3D"]
 script = ExtResource("1_g2tbl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, 0)
+mesh = SubResource("BoxMesh_g2tbl")
+surface_material_override/0 = SubResource("StandardMaterial3D_oq5cr")

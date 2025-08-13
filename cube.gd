@@ -1,11 +1,9 @@
 extends Node3D
 
-const ROT_SENSITIVITY: float = 0.03
+const MOUSE_SENSITIVITY: float = 0.03
 const SIZE: int = 3
-const BOX_SIZE: float = 0.2
-const POS_CHECK_MARGIN: float = BOX_SIZE / 10
-const MARGIN: float = 0.005
-const BOX_REAL_SIZE: Vector3 = (BOX_SIZE - MARGIN) * Vector3i.ONE
+const OFFSET = (SIZE / 2.0 - 0.5) * -1
+const POS_CHECK_MARGIN: float = 0.1
 const BOX_SCENE: PackedScene = preload("res://box.tscn")
 var boxes: Dictionary[Vector3, Node3D] = {}
 var first_intersect: Intersect
@@ -36,7 +34,6 @@ class Intersect:
 
 func _ready() -> void:
 	## Create cube regions according to configuration
-	const start = (SIZE / 2.0 - 0.5) * -1
 	for i in SIZE:
 		for j in SIZE:
 			for k in SIZE:
@@ -53,13 +50,13 @@ func _ready() -> void:
 					faces_coords.append(Vector3i(0, 0, -1))
 				elif k == SIZE - 1:
 					faces_coords.append(Vector3i(0, 0, 1))
-				var pos = Vector3(i + start, j + start, k + start) * BOX_SIZE
+				var pos = Vector3(i + OFFSET, j + OFFSET, k + OFFSET)
 				boxes[pos] = add_box(pos, faces_coords)
 
 
 func add_box(pos: Vector3, faces_coords: Array[Vector3i]) -> Node3D:
 	var box = BOX_SCENE.instantiate()
-	box.post_init(pos, BOX_REAL_SIZE, faces_coords)
+	box.post_init(pos, faces_coords)
 	add_child(box)
 	return box
 
@@ -99,14 +96,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and first_intersect:
 			if is_dragging:
-				%Pivot.rotate(rot_axis, ROT_SENSITIVITY)
-				rot_total += ROT_SENSITIVITY
+				%Pivot.rotate(rot_axis, MOUSE_SENSITIVITY)
+				rot_total += MOUSE_SENSITIVITY
 				return
 			
 			var intersect = get_intersect()
 			if intersect:
-				if first_intersect.length(intersect) < 0.2:
-					# distance between first click and here is not long enough
+				if first_intersect.length(intersect) < 1:
+					# distance between first click and this event < cube size
 					return
 				
 				var direction = first_intersect.direction_to(intersect)
