@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dknxotbcrytcs"]
+[gd_scene load_steps=4 format=3 uid="uid://dknxotbcrytcs"]
 
 [ext_resource type="Script" uid="uid://bcbxf3anv5und" path="res://cube.gd" id="1_rupst"]
+[ext_resource type="Script" uid="uid://chk6eg4huwbvs" path="res://camera_pivot.gd" id="2_m8u5f"]
 [ext_resource type="Script" uid="uid://b5yke2pp1xypg" path="res://camera.gd" id="2_wt17y"]
 
 [node name="Playground" type="Node3D"]
@@ -8,6 +9,13 @@
 [node name="Cube" type="Node3D" parent="."]
 script = ExtResource("1_rupst")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Pivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CameraPivot" type="Node3D" parent="."]
+script = ExtResource("2_m8u5f")
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 script = ExtResource("2_wt17y")
