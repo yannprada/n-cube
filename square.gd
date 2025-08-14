@@ -17,20 +17,9 @@ const COLOR: Dictionary[Vector3i, Resource] = {
 	Vector3(0, -1, 0): preload("res://material/green.tres"),
 }
 var coordinates: Vector3i
-var highlighted: bool = false
 
 
 func post_init(coords: Vector3i):
 	coordinates = coords
 	rotation = ROTATION[coords]
 	%Surface.set_surface_override_material(0, COLOR[coords])
-
-
-func _on_static_body_3d_mouse_entered() -> void:
-	%Highlight.show()
-	highlighted = true
-
-
-func _on_static_body_3d_mouse_exited() -> void:
-	%Highlight.hide()
-	highlighted = false

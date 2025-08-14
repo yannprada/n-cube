@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://g8nxfueu7gum"]
+[gd_scene load_steps=4 format=3 uid="uid://g8nxfueu7gum"]
 
 [ext_resource type="Script" uid="uid://dn3q8y7fgv1eo" path="res://square.gd" id="1_2eeqm"]
-[ext_resource type="Texture2D" uid="uid://bgye3haupjdpr" path="res://highlight.png" id="2_5epwn"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_8lkhj"]
 
@@ -20,13 +19,3 @@ mesh = SubResource("QuadMesh_8lkhj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Surface/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2eeqm")
-
-[node name="Highlight" type="Sprite3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.51)
-visible = false
-fixed_size = true
-texture = ExtResource("2_5epwn")
-
-[connection signal="mouse_entered" from="Surface/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
-[connection signal="mouse_exited" from="Surface/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

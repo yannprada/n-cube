@@ -71,49 +71,49 @@ func reset():
 		boxes[box.position] = box
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed():
-			var intersect = get_intersect()
-			if intersect:
-				first_intersect = intersect
-			return
-		
-		if event.is_released():
-			# align Pivot
-			if rot_total > 3*PI/4:
-				%Pivot.transform.basis = Basis().rotated(rot_axis, PI)
-			elif rot_total > PI/4:
-				%Pivot.transform.basis = Basis().rotated(rot_axis, PI/2)
-			else:
-				%Pivot.transform.basis = Basis()
-			reset()
-			return
-
-	if event is InputEventMouseMotion:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and first_intersect:
-			if is_dragging:
-				%Pivot.rotate(rot_axis, MOUSE_SENSITIVITY)
-				rot_total += MOUSE_SENSITIVITY
-				return
-			
-			var intersect = get_intersect()
-			if intersect:
-				if first_intersect.length(intersect) < 1:
-					# distance between first click and this event < cube size
-					return
-				
-				var direction = first_intersect.direction_to(intersect)
-				var axis = Utils.get_closest_axis(to_local(direction))
-				if axis == Vector3i.ZERO:
-					return
-				rot_axis = Vector3(axis).cross(-to_local(intersect.normal))
-				rot_boxes = get_boxes(rot_axis, intersect.box)
-				# reparent boxes
-				for box in rot_boxes:
-					box.reparent(%Pivot)
-				is_dragging = true
-				return
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.is_pressed():
+			#var intersect = get_intersect()
+			#if intersect:
+				#first_intersect = intersect
+			#return
+		#
+		#if event.is_released():
+			## align Pivot
+			#if rot_total > 3*PI/4:
+				#%Pivot.transform.basis = Basis().rotated(rot_axis, PI)
+			#elif rot_total > PI/4:
+				#%Pivot.transform.basis = Basis().rotated(rot_axis, PI/2)
+			#else:
+				#%Pivot.transform.basis = Basis()
+			#reset()
+			#return
+#
+	#if event is InputEventMouseMotion:
+		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and first_intersect:
+			#if is_dragging:
+				#%Pivot.rotate(rot_axis, MOUSE_SENSITIVITY)
+				#rot_total += MOUSE_SENSITIVITY
+				#return
+			#
+			#var intersect = get_intersect()
+			#if intersect:
+				#if first_intersect.length(intersect) < 1:
+					## distance between first click and this event < cube size
+					#return
+				#
+				#var direction = first_intersect.direction_to(intersect)
+				#var axis = Utils.get_closest_axis(to_local(direction))
+				#if axis == Vector3i.ZERO:
+					#return
+				#rot_axis = Vector3(axis).cross(-to_local(intersect.normal))
+				#rot_boxes = get_boxes(rot_axis, intersect.box)
+				## reparent boxes
+				#for box in rot_boxes:
+					#box.reparent(%Pivot)
+				#is_dragging = true
+				#return
 
 
 func get_intersect() -> Intersect:
