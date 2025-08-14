@@ -1,19 +1,24 @@
 [gd_scene load_steps=5 format=3 uid="uid://dis0jw1vlcial"]
 
 [ext_resource type="Script" uid="uid://b7tvcsvwi2066" path="res://arrow.gd" id="1_l5ahi"]
-[ext_resource type="Material" uid="uid://bd3mpmqjro6bc" path="res://material/arrow_off.tres" id="2_2ndhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kks1g"]
-size = Vector3(0.1, 0.1, 0.01)
+size = Vector3(0.4, 0.4, 0.01)
 
-[sub_resource type="TextMesh" id="TextMesh_l5ahi"]
-material = ExtResource("2_2ndhl")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5ahi"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0, 0.5, 0.333333, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_2ndhl"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_l5ahi")
 text = ">"
+pixel_size = 0.05
 depth = 0.0
 offset = Vector2(0.4, 0.4)
 
 [node name="Arrow" type="Area3D"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 script = ExtResource("1_l5ahi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -21,7 +26,7 @@ shape = SubResource("BoxShape3D_kks1g")
 
 [node name="Mesh" type="MeshInstance3D" parent="CollisionShape3D"]
 unique_name_in_owner = true
-mesh = SubResource("TextMesh_l5ahi")
+mesh = SubResource("TextMesh_2ndhl")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

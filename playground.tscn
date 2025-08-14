@@ -1,17 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://dknxotbcrytcs"]
+[gd_scene load_steps=6 format=3 uid="uid://dknxotbcrytcs"]
 
-[ext_resource type="Script" uid="uid://bcbxf3anv5und" path="res://cube.gd" id="1_rupst"]
+[ext_resource type="Script" uid="uid://cj1moslussd0r" path="res://generator.gd" id="1_o00ia"]
 [ext_resource type="Script" uid="uid://chk6eg4huwbvs" path="res://camera_pivot.gd" id="2_m8u5f"]
+[ext_resource type="Script" uid="uid://bn2v5r1c1fmnu" path="res://rubiks_cube.gd" id="2_o00ia"]
 [ext_resource type="Script" uid="uid://b5yke2pp1xypg" path="res://camera.gd" id="2_wt17y"]
 [ext_resource type="Script" uid="uid://cvlafvx42vlmu" path="res://arrows.gd" id="4_is3ju"]
 
 [node name="Playground" type="Node3D"]
 
-[node name="Cube" type="Node3D" parent="."]
-script = ExtResource("1_rupst")
+[node name="Generator" type="Node3D" parent="."]
+script = ExtResource("1_o00ia")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="RubiksCube" type="Node3D" parent="Generator"]
 unique_name_in_owner = true
+script = ExtResource("2_o00ia")
+
+[node name="Boxes" type="Node3D" parent="Generator/RubiksCube"]
+unique_name_in_owner = true
+
+[node name="Pivot" type="Node3D" parent="Generator/RubiksCube"]
+unique_name_in_owner = true
+
+[node name="Arrows" type="Node3D" parent="Generator"]
+unique_name_in_owner = true
+script = ExtResource("4_is3ju")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("2_m8u5f")
@@ -21,5 +33,4 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 script = ExtResource("2_wt17y")
 
-[node name="Arrows" type="Node3D" parent="."]
-script = ExtResource("4_is3ju")
+[connection signal="clicked" from="Generator/Arrows" to="Generator/RubiksCube" method="_on_arrows_clicked"]
