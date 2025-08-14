@@ -37,28 +37,25 @@ func _ready() -> void:
 	for i in SIZE:
 		for j in SIZE:
 			for k in SIZE:
-				var faces_coords: Array[Vector3i] = []
-				if i == 0:
-					faces_coords.append(Vector3i(-1, 0, 0))
-				elif i == SIZE - 1:
-					faces_coords.append(Vector3i(1, 0, 0))
-				if j == 0:
-					faces_coords.append(Vector3i(0, -1, 0))
-				elif j == SIZE - 1:
-					faces_coords.append(Vector3i(0, 1, 0))
-				if k == 0:
-					faces_coords.append(Vector3i(0, 0, -1))
-				elif k == SIZE - 1:
-					faces_coords.append(Vector3i(0, 0, 1))
-				var pos = Vector3(i + OFFSET, j + OFFSET, k + OFFSET)
-				boxes[pos] = add_box(pos, faces_coords)
+				add_box(i, j, k)
 
 
-func add_box(pos: Vector3, faces_coords: Array[Vector3i]) -> Node3D:
+func add_box(i: int, j: int, k: int) -> void:
+	var faces_normals: Array[Vector3i] = []
+	var numbers = [0, SIZE-1]
+	var values = [-1, 1]
+	for a in 2:
+		if i == numbers[a]:
+			faces_normals.append(Vector3i(values[a], 0, 0))
+		if j == numbers[a]:
+			faces_normals.append(Vector3i(0, values[a], 0))
+		if k == numbers[a]:
+			faces_normals.append(Vector3i(0, 0, values[a]))
+	var pos = Vector3(i + OFFSET, j + OFFSET, k + OFFSET)
 	var box = BOX_SCENE.instantiate()
-	box.post_init(pos, faces_coords)
+	box.post_init(pos, faces_normals)
 	add_child(box)
-	return box
+	boxes[pos] = box
 
 
 func reset():
@@ -136,6 +133,7 @@ func get_boxes(axis: Vector3i, box: Node3D) -> Array[Node3D]:
 	var pos = box.position
 	var result: Array[Node3D] = []
 	for vec in boxes:
+		# are vec and pos on the same plane, defined by axis as the normal
 		if (
 			(abs(axis.x) > 0 and abs(vec.x - pos.x) < POS_CHECK_MARGIN) or 
 			(abs(axis.y) > 0 and abs(vec.y - pos.y) < POS_CHECK_MARGIN) or 
