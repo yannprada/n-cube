@@ -44,5 +44,12 @@ func rotation_callback() -> void:
 	is_rotating = false
 
 
+func clear() -> void:
+	for box in %Boxes.get_children():
+		box.queue_free()
+	for box in %Pivot.get_children():
+		box.queue_free()
+
+
 func _on_arrows_clicked(layer: Vector3, rotation_axis: Vector3) -> void:
 	rotate_layer(layer, rotation_axis)

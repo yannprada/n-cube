@@ -19,3 +19,8 @@ func add_arrows(block_pos: Vector3, faces_normals: Array[Vector3i]) -> void:
 
 func on_clicked(layer: Vector3, rotation_axis: Vector3):
 	clicked.emit(layer, rotation_axis)
+
+
+func clear() -> void:
+	for arrow in get_children():
+		arrow.queue_free()

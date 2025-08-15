@@ -1,18 +1,12 @@
 extends Node3D
 
-const AXIS = [Vector3.UP, Vector3.DOWN, Vector3.LEFT, Vector3.RIGHT, Vector3.BACK, Vector3.FORWARD]
+const AXES = [Vector3.UP, Vector3.DOWN, Vector3.LEFT, Vector3.RIGHT, Vector3.BACK, Vector3.FORWARD]
 
-var size: int = 3
-var scrambling_moves: int = 50
+var scrambling_moves: int = 40
 var exterior_positions: Array[Vector3]
 
 
-func _ready() -> void:
-	generate()
-	scramble()
-
-
-func generate() -> void:
+func generate(size: int = 3) -> void:
 	## Generate a Rubik's Cube and the Arrows to manipulate it.
 	exterior_positions = []
 	var offset = (size / 2.0 - 0.5) * -1
@@ -40,7 +34,12 @@ func generate() -> void:
 func scramble() -> void:
 	for n in scrambling_moves:
 		var pos = exterior_positions[randi_range(0, exterior_positions.size()-1)]
-		var axis = AXIS[randi_range(0, AXIS.size()-1)]
+		var axis = AXES[randi_range(0, AXES.size()-1)]
 		var layer = pos * axis.abs()
 		var tween = %RubiksCube.rotate_layer(layer, axis)
 		await tween.finished
+
+
+func clear() -> void:
+	%RubiksCube.clear()
+	%Arrows.clear()
