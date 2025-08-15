@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://sfnso3xn3aj6"]
 
-[ext_resource type="Script" uid="uid://cjlni44mylk21" path="res://box.gd" id="1_g2tbl"]
+[ext_resource type="Script" uid="uid://cjlni44mylk21" path="res://scenes/game/world/box/box.gd" id="1_g2tbl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2tbl"]
 

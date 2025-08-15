@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dis0jw1vlcial"]
 
-[ext_resource type="Script" uid="uid://b7tvcsvwi2066" path="res://arrow.gd" id="1_l5ahi"]
+[ext_resource type="Script" uid="uid://b7tvcsvwi2066" path="res://scenes/game/world/arrows/arrow.gd" id="1_l5ahi"]
 [ext_resource type="Material" uid="uid://bd3mpmqjro6bc" path="res://material/arrow_off.tres" id="2_2ndhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kks1g"]

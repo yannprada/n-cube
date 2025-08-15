@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7w5dv258poe"]
+
+[ext_resource type="Script" uid="uid://cj1moslussd0r" path="res://scenes/game/world/world.gd" id="1_t5ptc"]
+[ext_resource type="Script" uid="uid://bn2v5r1c1fmnu" path="res://scenes/game/world/rubiks_cube.gd" id="2_bq33v"]
+[ext_resource type="Script" uid="uid://bcyvnv4bc2joe" path="res://scenes/game/world/pivot.gd" id="3_j2gmx"]
+[ext_resource type="Script" uid="uid://cvlafvx42vlmu" path="res://scenes/game/world/arrows/arrows.gd" id="4_1yooq"]
+[ext_resource type="Script" uid="uid://chk6eg4huwbvs" path="res://scenes/game/world/camera_pivot.gd" id="5_gb53w"]
+[ext_resource type="Script" uid="uid://b5yke2pp1xypg" path="res://scenes/game/world/camera.gd" id="6_5qq27"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_t5ptc")
+
+[node name="RubiksCube" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_bq33v")
+
+[node name="Boxes" type="Node3D" parent="RubiksCube"]
+unique_name_in_owner = true
+
+[node name="Pivot" type="Node3D" parent="RubiksCube"]
+unique_name_in_owner = true
+script = ExtResource("3_j2gmx")
+
+[node name="Arrows" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_1yooq")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.866026, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 0, 0)
+script = ExtResource("5_gb53w")
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
+script = ExtResource("6_5qq27")
+
+[connection signal="clicked" from="Arrows" to="RubiksCube" method="_on_arrows_clicked"]

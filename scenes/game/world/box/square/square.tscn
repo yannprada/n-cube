@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://g8nxfueu7gum"]
 
-[ext_resource type="Script" uid="uid://dn3q8y7fgv1eo" path="res://square.gd" id="1_2eeqm"]
+[ext_resource type="Script" uid="uid://dn3q8y7fgv1eo" path="res://scenes/game/world/box/square/square.gd" id="1_2eeqm"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_8lkhj"]
 
