@@ -1,6 +1,6 @@
 extends Node3D
 
-const ARROW_SCENE: PackedScene = preload("res://arrow.tscn")
+const ARROW_SCENE: PackedScene = preload("res://scenes/game/world/arrows/arrow.tscn")
 const size: int = 3
 
 signal clicked(layer: Vector3, rotation_axis: Vector3)

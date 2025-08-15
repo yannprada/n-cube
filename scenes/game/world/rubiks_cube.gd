@@ -1,6 +1,6 @@
 extends Node3D
 
-const BOX_SCENE: PackedScene = preload("res://box.tscn")
+const BOX_SCENE: PackedScene = preload("res://scenes/game/world/box/box.tscn")
 const POS_ACCURACY: float = 0.1
 
 var is_rotating: bool = false
