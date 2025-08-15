@@ -2,9 +2,8 @@ extends Node3D
 
 const BOX_SCENE: PackedScene = preload("res://box.tscn")
 const POS_ACCURACY: float = 0.1
-const ROTATION_ANGLE: float = -PI/2
-const TWEEN_DURATION: float = 0.25
-var previous_angle: float = 0
+
+var is_rotating: bool = false
 
 
 func add_box(pos: Vector3, faces_normals: Array[Vector3i]) -> void:
@@ -13,7 +12,13 @@ func add_box(pos: Vector3, faces_normals: Array[Vector3i]) -> void:
 	box.post_init(pos, faces_normals)
 
 
-func rotate_layer(layer: Vector3, axis: Vector3) -> void:
+func rotate_layer(layer: Vector3, axis: Vector3) -> Tween:
+	if is_rotating:
+		return
+	
+	# Prevent other rotations at the same time
+	is_rotating = true
+	
 	# Move the layer of boxes to Pivot
 	for box in %Boxes.get_children():
 		if (
@@ -24,23 +29,19 @@ func rotate_layer(layer: Vector3, axis: Vector3) -> void:
 			box.reparent(%Pivot)
 	
 	# Animate the rotation
-	var tween = create_tween()
-	tween.tween_method(rotate_pivot.bind(axis), 0.0, ROTATION_ANGLE, TWEEN_DURATION)
-	#TODO disable Arrows
-	await tween.finished
-	previous_angle = 0
-	
+	var tween = %Pivot.tween_rotate(axis)
+	tween.tween_callback(rotation_callback)
+	return tween
+
+
+func rotation_callback() -> void:
 	# Move the boxes back
 	for box in %Pivot.get_children():
 		box.reparent(%Boxes)
 	
-	# Reset Pivot
-	%Pivot.transform.basis = Basis()
-
-
-func rotate_pivot(new_angle: float, axis: Vector3) -> void:
-	%Pivot.rotate(axis, new_angle - previous_angle)
-	previous_angle = new_angle
+	# Reset
+	%Pivot.reset()
+	is_rotating = false
 
 
 func _on_arrows_clicked(layer: Vector3, rotation_axis: Vector3) -> void:

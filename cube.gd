@@ -1,5 +1,7 @@
 extends Node3D
 
+## Legacy code, kept for reference
+
 const MOUSE_SENSITIVITY: float = 0.03
 const SIZE: int = 3
 const OFFSET = (SIZE / 2.0 - 0.5) * -1
