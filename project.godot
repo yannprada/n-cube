@@ -15,9 +15,16 @@ run/main_scene="uid://dknxotbcrytcs"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[autoload]
+[display]
 
-Utils="*res://utils.gd"
+window/size/viewport_width=480
+window/size/viewport_height=800
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+
+[gui]
+
+theme/custom="uid://cn5n35yqfpaeo"
 
 [input]
 

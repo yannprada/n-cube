@@ -1,14 +1,14 @@
 extends Node3D
 
 const ROTATION_ANGLE: float = -PI/2
-const TWEEN_DURATION: float = 0.25
 
+var tween_duration: float = 0.25
 var previous_angle: float = 0.0
 
 
 func tween_rotate(axis: Vector3) -> Tween:
 	var tween = create_tween()
-	tween.tween_method(_rotate_inner.bind(axis), 0.0, ROTATION_ANGLE, TWEEN_DURATION)
+	tween.tween_method(_rotate_inner.bind(axis), 0.0, ROTATION_ANGLE, tween_duration)
 	return tween
 
 

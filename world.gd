@@ -2,7 +2,6 @@ extends Node3D
 
 const AXES = [Vector3.UP, Vector3.DOWN, Vector3.LEFT, Vector3.RIGHT, Vector3.BACK, Vector3.FORWARD]
 
-var scrambling_moves: int = 40
 var exterior_positions: Array[Vector3]
 
 
@@ -31,8 +30,11 @@ func generate(size: int = 3) -> void:
 					exterior_positions.append(pos)
 
 
-func scramble() -> void:
-	for n in scrambling_moves:
+func scramble(moves: int) -> void:
+	if %RubiksCube.get_child_count() == 0:
+		return
+	
+	for n in moves:
 		var pos = exterior_positions[randi_range(0, exterior_positions.size()-1)]
 		var axis = AXES[randi_range(0, AXES.size()-1)]
 		var layer = pos * axis.abs()

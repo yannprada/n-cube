@@ -1,13 +1,8 @@
 extends Node
 
 
-func _on_scramble_button_pressed() -> void:
-	%UI.disable()
-	%World.scramble()
-	await get_tree().create_timer(0.25*50).timeout
-	%UI.enable()
-
-
-func _on_new_button_pressed() -> void:
+func _on_ui_new_game(size: int, moves: int, tween_duration: float) -> void:
+	%Pivot.tween_duration = tween_duration
 	%World.clear()
-	%World.generate(%SizeSlider.value)
+	%World.generate(size)
+	%World.scramble(moves)
