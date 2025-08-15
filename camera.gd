@@ -1,7 +1,7 @@
 extends Camera3D
 
-const MOUSE_SENSITIVITY: float = 0.2
-const Z_CLAMP: Vector2 = Vector2(1, 10)
+const MOUSE_SENSITIVITY: float = 0.5
+const Z_CLAMP: Vector2 = Vector2(3, 20)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
