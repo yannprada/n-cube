@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://vyvu0gq6q5xk"]
+[gd_scene load_steps=18 format=3 uid="uid://vyvu0gq6q5xk"]
 
 [ext_resource type="Script" uid="uid://cyuyfumpe4tkw" path="res://scenes/game/UI/ui.gd" id="1_lj5up"]
 [ext_resource type="Texture2D" uid="uid://bgpehx85u4oo2" path="res://assets/shuffle75.png" id="2_wgnrc"]
 [ext_resource type="Texture2D" uid="uid://cnv5ogsw7cl2r" path="res://assets/shuffle75pressed.png" id="3_84lt7"]
 [ext_resource type="Texture2D" uid="uid://boocgkjh3r2wn" path="res://assets/cancel75.png" id="4_2ttv2"]
+[ext_resource type="Texture2D" uid="uid://de1pexsyxa7pq" path="res://assets/settings75.png" id="4_dhitd"]
 [ext_resource type="Texture2D" uid="uid://yevb552t60ls" path="res://assets/ok75.png" id="5_u6q2i"]
+[ext_resource type="Texture2D" uid="uid://drm7qx0x6scea" path="res://assets/settings75pressed.png" id="5_ydonv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -13,9 +15,9 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="LabelSettings" id="LabelSettings_iotsf"]
+[sub_resource type="LabelSettings" id="LabelSettings_mjckw"]
 font_size = 30
-font_color = Color(1, 0.313726, 0, 1)
+font_color = Color(0.5, 0.5, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc2xo"]
 
@@ -67,6 +69,10 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="LabelSettings" id="LabelSettings_iotsf"]
+font_size = 30
+font_color = Color(1, 0.453333, 0.2, 1)
+
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -79,7 +85,25 @@ size_flags_vertical = 4
 mouse_filter = 1
 script = ExtResource("1_lj5up")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TopRight" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_bottom = 85.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="Options" type="TextureButton" parent="TopRight"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("4_dhitd")
+texture_pressed = ExtResource("5_ydonv")
+stretch_mode = 4
+
+[node name="BottomRight" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -93,7 +117,7 @@ grow_vertical = 0
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="NewGame" type="TextureButton" parent="MarginContainer"]
+[node name="NewGame" type="TextureButton" parent="BottomRight"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Scramble"
@@ -130,7 +154,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="NewGamePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "New Game"
-label_settings = SubResource("LabelSettings_iotsf")
+label_settings = SubResource("LabelSettings_mjckw")
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="NewGamePanel/MarginContainer/VBoxContainer"]
@@ -217,9 +241,96 @@ text = "OK"
 icon = ExtResource("5_u6q2i")
 expand_icon = true
 
-[connection signal="pressed" from="MarginContainer/NewGame" to="." method="_on_new_game_pressed"]
+[node name="OptionsPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -133.0
+offset_right = 155.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iotsf")
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_iotsf")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="OptionsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="TweenLabelOpt" type="Label" parent="OptionsPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Animation Length: 0.25s"
+horizontal_alignment = 1
+
+[node name="TweenSliderOpt" type="HSlider" parent="OptionsPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 2.0
+step = 0.05
+value = 0.25
+
+[node name="HSeparator4" type="HSeparator" parent="OptionsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_215e1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7sc4i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_80cx4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7sc4i")
+text = "CANCEL"
+icon = ExtResource("4_2ttv2")
+expand_icon = true
+
+[node name="OK" type="Button" parent="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iotsf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xa8c5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lc2xo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xa8c5")
+text = "OK"
+icon = ExtResource("5_u6q2i")
+expand_icon = true
+
+[connection signal="pressed" from="TopRight/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="BottomRight/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="value_changed" from="NewGamePanel/MarginContainer/VBoxContainer/SizeSlider" to="." method="_on_size_slider_value_changed"]
 [connection signal="value_changed" from="NewGamePanel/MarginContainer/VBoxContainer/ScramblingSlider" to="." method="_on_scrambling_slider_value_changed"]
 [connection signal="value_changed" from="NewGamePanel/MarginContainer/VBoxContainer/TweenSlider" to="." method="_on_tween_slider_value_changed"]
 [connection signal="pressed" from="NewGamePanel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_new_game_cancel_pressed"]
 [connection signal="pressed" from="NewGamePanel/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_new_game_ok_pressed"]
+[connection signal="value_changed" from="OptionsPanel/MarginContainer/VBoxContainer/TweenSliderOpt" to="." method="_on_tween_slider_opt_value_changed"]
+[connection signal="pressed" from="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_options_cancel_pressed"]
+[connection signal="pressed" from="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_options_ok_pressed"]

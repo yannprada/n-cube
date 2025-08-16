@@ -1,8 +1,11 @@
 extends Node
 
 
-func _on_ui_new_game(size: int, moves: int, tween_duration: float) -> void:
+func _on_ui_new_game(size: int, moves: int) -> void:
 	%World.clear()
-	%World.set_tween_duration(tween_duration)
 	%World.generate(size)
 	%World.scramble(moves)
+
+
+func _on_ui_tween_duration_changed(value: float) -> void:
+	%World.set_tween_duration(value)
