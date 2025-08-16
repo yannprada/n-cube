@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://vyvu0gq6q5xk"]
+[gd_scene load_steps=23 format=3 uid="uid://vyvu0gq6q5xk"]
 
 [ext_resource type="Script" uid="uid://cyuyfumpe4tkw" path="res://scenes/game/UI/ui.gd" id="1_lj5up"]
 [ext_resource type="Texture2D" uid="uid://bgpehx85u4oo2" path="res://assets/shuffle75.png" id="2_wgnrc"]
@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://de1pexsyxa7pq" path="res://assets/settings75.png" id="4_dhitd"]
 [ext_resource type="Texture2D" uid="uid://yevb552t60ls" path="res://assets/ok75.png" id="5_u6q2i"]
 [ext_resource type="Texture2D" uid="uid://drm7qx0x6scea" path="res://assets/settings75pressed.png" id="5_ydonv"]
+[ext_resource type="Texture2D" uid="uid://bwog53vpkooh4" path="res://assets/zoom_in50.png" id="6_d5j55"]
 [ext_resource type="PackedScene" uid="uid://dw6vahsano2yk" path="res://scenes/label_slider/label_slider.tscn" id="6_ydonv"]
+[ext_resource type="Texture2D" uid="uid://dydpbjqwigfvi" path="res://assets/zoom_in50pressed.png" id="7_1p530"]
+[ext_resource type="Texture2D" uid="uid://bwdakspwm64yb" path="res://assets/zoom_out50.png" id="8_v0fiw"]
+[ext_resource type="Texture2D" uid="uid://bysv816k3mqbn" path="res://assets/zoom_out50pressed.png" id="9_xqeyu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -100,6 +104,7 @@ theme_override_constants/margin_right = 10
 [node name="Options" type="TextureButton" parent="TopRight"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Options"
 texture_normal = ExtResource("4_dhitd")
 texture_pressed = ExtResource("5_ydonv")
 stretch_mode = 4
@@ -121,9 +126,39 @@ theme_override_constants/margin_bottom = 10
 [node name="NewGame" type="TextureButton" parent="BottomRight"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Scramble"
+tooltip_text = "New Game"
 texture_normal = ExtResource("2_wgnrc")
 texture_pressed = ExtResource("3_84lt7")
+stretch_mode = 4
+
+[node name="BottomLeft" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_right = 60.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft"]
+layout_mode = 2
+
+[node name="ZoomIn" type="TextureButton" parent="BottomLeft/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Zoom In"
+texture_normal = ExtResource("6_d5j55")
+texture_pressed = ExtResource("7_1p530")
+stretch_mode = 4
+
+[node name="ZoomOut" type="TextureButton" parent="BottomLeft/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Zomm Out"
+texture_normal = ExtResource("8_v0fiw")
+texture_pressed = ExtResource("9_xqeyu")
 stretch_mode = 4
 
 [node name="NewGamePanel" type="PanelContainer" parent="."]
@@ -307,6 +342,8 @@ expand_icon = true
 
 [connection signal="pressed" from="TopRight/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="BottomRight/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="BottomLeft/VBoxContainer/ZoomIn" to="." method="_on_zoom_in_pressed"]
+[connection signal="pressed" from="BottomLeft/VBoxContainer/ZoomOut" to="." method="_on_zoom_out_pressed"]
 [connection signal="pressed" from="NewGamePanel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_new_game_cancel_pressed"]
 [connection signal="pressed" from="NewGamePanel/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_new_game_ok_pressed"]
 [connection signal="pressed" from="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_options_cancel_pressed"]

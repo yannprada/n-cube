@@ -4,6 +4,7 @@ var _tween_duration: float = 0.25
 
 signal new_game(size: int, moves: int)
 signal tween_duration_changed(value: float)
+signal zoom(direction: int)
 
 
 # NEW GAME
@@ -43,3 +44,12 @@ func _on_options_pressed() -> void:
 	%NewGamePanel.hide()
 	%TweenSliderOpt.value = _tween_duration
 	%OptionsPanel.visible = not %OptionsPanel.visible
+
+
+# ZOOM
+func _on_zoom_in_pressed() -> void:
+	zoom.emit(-1)
+
+
+func _on_zoom_out_pressed() -> void:
+	zoom.emit(1)

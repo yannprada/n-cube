@@ -9,3 +9,7 @@ func _on_ui_new_game(size: int, moves: int) -> void:
 
 func _on_ui_tween_duration_changed(value: float) -> void:
 	%World.set_tween_duration(value)
+
+
+func _on_ui_zoom(direction: int) -> void:
+	%World.zoom(direction)

@@ -9,6 +9,10 @@ func set_tween_duration(tween_duration: float) -> void:
 	%Pivot.tween_duration = tween_duration
 
 
+func zoom(direction: int) -> void:
+	%Camera.zoom(direction)
+
+
 func generate(size: int = 3) -> void:
 	## Generate a Rubik's Cube and the Arrows to manipulate it.
 	exterior_positions = []
