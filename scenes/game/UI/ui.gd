@@ -7,18 +7,6 @@ signal tween_duration_changed(value: float)
 
 
 # NEW GAME
-func _on_size_slider_value_changed(value: int) -> void:
-	%SizeLabel.text = 'Cube Size: ' + str(value)
-
-
-func _on_scrambling_slider_value_changed(value: int) -> void:
-	%ScramblingLabel.text = 'Scrambling Moves: ' + str(value)
-
-
-func _on_tween_slider_value_changed(value: float) -> void:
-	%TweenLabel.text = 'Animation Length: %.2fs' % value
-
-
 func _on_new_game_ok_pressed() -> void:
 	var moves = %ScramblingSlider.value
 	_tween_duration = %TweenSlider.value
@@ -36,13 +24,11 @@ func _on_new_game_cancel_pressed() -> void:
 
 
 func _on_new_game_pressed() -> void:
-	%NewGamePanel.show()
+	%OptionsPanel.hide()
+	%TweenSlider.value = _tween_duration
+	%NewGamePanel.visible = not %NewGamePanel.visible
 
 # OPTIONS
-func _on_tween_slider_opt_value_changed(value: float) -> void:
-	%TweenLabelOpt.text = 'Animation Length: %.2fs' % value
-
-
 func _on_options_ok_pressed() -> void:
 	%OptionsPanel.hide()
 	_tween_duration = %TweenSliderOpt.value
@@ -54,5 +40,6 @@ func _on_options_cancel_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
+	%NewGamePanel.hide()
 	%TweenSliderOpt.value = _tween_duration
-	%OptionsPanel.show()
+	%OptionsPanel.visible = not %OptionsPanel.visible
