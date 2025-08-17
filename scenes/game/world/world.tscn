@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bn2v5r1c1fmnu" path="res://scenes/game/world/rubiks_cube.gd" id="2_bq33v"]
 [ext_resource type="Script" uid="uid://bcyvnv4bc2joe" path="res://scenes/game/world/pivot.gd" id="3_j2gmx"]
 [ext_resource type="Script" uid="uid://cvlafvx42vlmu" path="res://scenes/game/world/arrows/arrows.gd" id="4_1yooq"]
-[ext_resource type="Resource" uid="uid://dgyyooy8jevvs" path="res://config.tres" id="4_j2qdb"]
+[ext_resource type="Resource" uid="uid://dcl4hnr4dyixa" path="res://config.tres" id="4_j2qdb"]
 [ext_resource type="Script" uid="uid://chk6eg4huwbvs" path="res://scenes/game/world/camera_pivot.gd" id="5_gb53w"]
 [ext_resource type="Script" uid="uid://b5yke2pp1xypg" path="res://scenes/game/world/camera.gd" id="6_5qq27"]
 

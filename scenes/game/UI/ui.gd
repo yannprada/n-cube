@@ -7,6 +7,7 @@ signal zoom(direction: int)
 
 
 func _ready() -> void:
+	config.load()
 	%SizeSlider.value = config.cube_size
 	%ScramblingSlider.value = config.scrambling_moves
 	%AnimationLength.value = config.animation_length
@@ -16,7 +17,7 @@ func _ready() -> void:
 func _on_new_game_ok_pressed() -> void:
 	config.cube_size = %SizeSlider.value
 	config.scrambling_moves = %ScramblingSlider.value
-	ResourceSaver.save(config)
+	config.save()
 	new_game.emit(config.cube_size, config.scrambling_moves)
 	
 	%NewGamePanel.hide()
@@ -40,7 +41,7 @@ func _on_new_game_pressed() -> void:
 func _on_options_ok_pressed() -> void:
 	%OptionsPanel.hide()
 	config.animation_length = %AnimationLength.value
-	ResourceSaver.save(config)
+	config.save()
 
 
 func _on_options_cancel_pressed() -> void:
