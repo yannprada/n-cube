@@ -1,11 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://dis0jw1vlcial"]
+[gd_scene load_steps=8 format=3 uid="uid://dis0jw1vlcial"]
 
 [ext_resource type="Script" uid="uid://b7tvcsvwi2066" path="res://scenes/game/world/arrows/arrow.gd" id="1_l5ahi"]
-[ext_resource type="Material" uid="uid://bd3mpmqjro6bc" path="res://material/arrow_off.tres" id="2_2ndhl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0s3x"]
+shading_mode = 0
+albedo_color = Color(0.7, 0, 0.7, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_2ndhl"]
 resource_local_to_scene = true
-material = ExtResource("2_2ndhl")
+material = SubResource("StandardMaterial3D_c0s3x")
+text = "➤"
+pixel_size = 0.05
+depth = 0.0
+offset = Vector2(0, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_reyoc"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_w3ssr"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_reyoc")
 text = "➤"
 pixel_size = 0.05
 depth = 0.0
@@ -23,6 +38,12 @@ script = ExtResource("1_l5ahi")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 mesh = SubResource("TextMesh_2ndhl")
+skeleton = NodePath("")
+
+[node name="MeshOutline" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -0.001)
+mesh = SubResource("TextMesh_w3ssr")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
