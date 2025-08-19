@@ -28,8 +28,12 @@ func clear() -> void:
 
 func _process(_delta: float) -> void:
 	## Hide arrows that are on the other side of the origin, relative to the camera
+	## and those that are not facing the camera as well
 	var cam_dist_origin = %Camera.global_position.distance_to(Vector3.ZERO)
 	for arrow in get_children():
 		var pos = %Camera.to_local(arrow.global_position)
-		var diff = cam_dist_origin + pos.z
-		arrow.visible = diff > 0
+		var arrow_cam_z = cam_dist_origin + pos.z
+		arrow.visible = arrow_cam_z > 0
+		var normal = %Camera.to_local(arrow.normal)
+		if (normal.z + cam_dist_origin) < 0:
+			arrow.visible = false

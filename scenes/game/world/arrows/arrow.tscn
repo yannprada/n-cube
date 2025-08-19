@@ -1,28 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://dis0jw1vlcial"]
+[gd_scene load_steps=6 format=3 uid="uid://dis0jw1vlcial"]
 
 [ext_resource type="Script" uid="uid://b7tvcsvwi2066" path="res://scenes/game/world/arrows/arrow.gd" id="1_l5ahi"]
 [ext_resource type="Material" uid="uid://bd3mpmqjro6bc" path="res://material/arrow_off.tres" id="2_2ndhl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kks1g"]
-size = Vector3(0.4, 0.4, 0.01)
-
 [sub_resource type="TextMesh" id="TextMesh_2ndhl"]
 resource_local_to_scene = true
 material = ExtResource("2_2ndhl")
-text = ">"
+text = "➤"
 pixel_size = 0.05
 depth = 0.0
-offset = Vector2(0.4, 0.4)
+offset = Vector2(0, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_reyoc"]
+points = PackedVector3Array(-0.215, 0.001, 0, -0.341, 0.28, 0, 0.341, 0.001, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w3ssr"]
+points = PackedVector3Array(-0.341, -0.28, 0, -0.215, 0.001, 0, 0.341, 0.001, 0)
 
 [node name="Arrow" type="Area3D"]
 script = ExtResource("1_l5ahi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_kks1g")
-
-[node name="Mesh" type="MeshInstance3D" parent="CollisionShape3D"]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 mesh = SubResource("TextMesh_2ndhl")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_reyoc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_w3ssr")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
