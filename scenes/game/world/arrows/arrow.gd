@@ -4,18 +4,17 @@ const ARROW_ON: Resource = preload("res://material/arrow_on.tres")
 const ARROW_OFF: Resource = preload("res://material/arrow_off.tres")
 
 var layer: Vector3
-var normal: Vector3
 var rotation_axis: Vector3
 
 signal clicked(layer: Vector3, rotation_axis: Vector3)
 
 
-func post_init(block_pos: Vector3, _normal: Vector3, direction: Vector3) -> void:
-	normal = _normal
-	position = block_pos + (direction * 0.9) + (normal * 0.5)
+func post_init(block_pos: Vector3, normal: Vector3, direction: Vector3) -> void:
 	rotation_axis = direction.cross(normal)
 	layer = block_pos * rotation_axis.abs()
+	position = block_pos + (direction * 0.3) + (normal * 0.55)
 	basis = Basis(direction, rotation_axis, normal)
+	scale *= 0.4
 
 
 func _on_mouse_entered() -> void:

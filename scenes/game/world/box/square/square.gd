@@ -22,4 +22,4 @@ var coordinates: Vector3i
 func post_init(coords: Vector3i):
 	coordinates = coords
 	rotation = ROTATION[coords]
-	%Surface.set_surface_override_material(0, COLOR[coords])
+	%Mesh.set_surface_override_material(0, COLOR[coords])

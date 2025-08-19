@@ -1,7 +1,6 @@
 extends Node3D
 
 const ARROW_SCENE: PackedScene = preload("res://scenes/game/world/arrows/arrow.tscn")
-const size: int = 3
 
 signal clicked(layer: Vector3, rotation_axis: Vector3)
 
@@ -24,16 +23,3 @@ func on_clicked(layer: Vector3, rotation_axis: Vector3):
 func clear() -> void:
 	for arrow in get_children():
 		arrow.queue_free()
-
-
-func _process(_delta: float) -> void:
-	## Hide arrows that are on the other side of the origin, relative to the camera
-	## and those that are not facing the camera as well
-	var cam_dist_origin = %Camera.global_position.distance_to(Vector3.ZERO)
-	for arrow in get_children():
-		var pos = %Camera.to_local(arrow.global_position)
-		var arrow_cam_z = cam_dist_origin + pos.z
-		arrow.visible = arrow_cam_z > 0
-		var normal = %Camera.to_local(arrow.normal)
-		if (normal.z + cam_dist_origin) < 0:
-			arrow.visible = false
