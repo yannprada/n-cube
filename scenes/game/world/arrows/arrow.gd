@@ -1,7 +1,7 @@
 extends Area3D
 
-const ARROW_ON: Resource = preload("res://material/arrow_on.tres")
-const ARROW_OFF: Resource = preload("res://material/arrow_off.tres")
+const COLOR_ON: Color = Color.ORCHID
+const COLOR_OFF: Color = Color.WHITE
 const DIRECTION_MULT: float = .3
 const NORMAL_MULT: float = .55
 const SCALE_MULT: float = .4
@@ -27,10 +27,10 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			clicked.emit(layer, rotation_axis)
-			%Mesh.mesh.material = ARROW_ON
+			%Sprite3D.modulate = COLOR_ON
 		else:
-			%Mesh.mesh.material = ARROW_OFF
+			%Sprite3D.modulate = COLOR_OFF
 
 
 func _on_mouse_exited() -> void:
-	%Mesh.mesh.material = ARROW_OFF
+	%Sprite3D.modulate = COLOR_OFF

@@ -1,29 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dis0jw1vlcial"]
+[gd_scene load_steps=4 format=3 uid="uid://dis0jw1vlcial"]
 
 [ext_resource type="Script" uid="uid://b7tvcsvwi2066" path="res://scenes/game/world/arrows/arrow.gd" id="1_l5ahi"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0s3x"]
-shading_mode = 0
-
-[sub_resource type="TextMesh" id="TextMesh_2ndhl"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_c0s3x")
-text = "➤"
-pixel_size = 0.05
-depth = 0.0
-offset = Vector2(0, 0.9)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_reyoc"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_w3ssr"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_reyoc")
-text = "➤"
-pixel_size = 0.05
-depth = 0.0
-offset = Vector2(0, 0.9)
+[ext_resource type="Texture2D" uid="uid://y6gw7p1vtfo7" path="res://assets/arrow.png" id="2_reyoc"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_reyoc"]
 points = PackedVector3Array(-0.4, -0.32, 0, -0.4, 0.32, 0, 0.4, -1, 0, 0.4, 1, 0)
@@ -31,19 +9,16 @@ points = PackedVector3Array(-0.4, -0.32, 0, -0.4, 0.32, 0, 0.4, -1, 0, 0.4, 1, 0
 [node name="Arrow" type="Area3D"]
 script = ExtResource("1_l5ahi")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-mesh = SubResource("TextMesh_2ndhl")
-skeleton = NodePath("")
-
-[node name="MeshOutline" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -0.001)
-mesh = SubResource("TextMesh_w3ssr")
-skeleton = NodePath("")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_reyoc")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+pixel_size = 0.0055
+double_sided = false
+alpha_cut = 1
+texture_filter = 5
+texture = ExtResource("2_reyoc")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
