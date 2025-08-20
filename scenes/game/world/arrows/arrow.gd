@@ -21,9 +21,13 @@ func post_init(block_pos: Vector3, _normal: Vector3, direction: Vector3) -> void
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, 
 		_normal: Vector3, _shape_idx: int) -> void:
-	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and 
-			event.pressed == true):
-		clicked.emit(layer, rotation_axis)
-		%Mesh.mesh.material = ARROW_ON
-		await get_tree().create_timer(0.1).timeout
-		%Mesh.mesh.material = ARROW_OFF
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			clicked.emit(layer, rotation_axis)
+			%Mesh.mesh.material = ARROW_ON
+		else:
+			%Mesh.mesh.material = ARROW_OFF
+
+
+func _on_mouse_exited() -> void:
+	%Mesh.mesh.material = ARROW_OFF

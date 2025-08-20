@@ -4,7 +4,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0s3x"]
 shading_mode = 0
-albedo_color = Color(0.7, 0, 0.7, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_2ndhl"]
 resource_local_to_scene = true
@@ -47,3 +46,4 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_reyoc")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
