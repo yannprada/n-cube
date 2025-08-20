@@ -2,6 +2,9 @@ extends Area3D
 
 const ARROW_ON: Resource = preload("res://material/arrow_on.tres")
 const ARROW_OFF: Resource = preload("res://material/arrow_off.tres")
+const DIRECTION_MULT: float = .3
+const NORMAL_MULT: float = .55
+const SCALE_MULT: float = .4
 
 var layer: Vector3
 var normal: Vector3
@@ -14,9 +17,9 @@ func post_init(block_pos: Vector3, _normal: Vector3, direction: Vector3) -> void
 	normal = _normal
 	rotation_axis = direction.cross(normal)
 	layer = block_pos * rotation_axis.abs()
-	position = block_pos + (direction * 0.3) + (normal * 0.55)
+	position = block_pos + (direction * DIRECTION_MULT) + (normal * NORMAL_MULT)
 	basis = Basis(direction, rotation_axis, normal)
-	scale *= 0.4
+	scale *= SCALE_MULT
 
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, 
