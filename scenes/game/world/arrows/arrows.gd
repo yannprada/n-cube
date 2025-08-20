@@ -1,6 +1,7 @@
 extends Node3D
 
 const ARROW_SCENE: PackedScene = preload("res://scenes/game/world/arrows/arrow.tscn")
+const VISIBILITY_ANGLE: float = PI/2.5
 
 signal clicked(layer: Vector3, rotation_axis: Vector3)
 
@@ -26,8 +27,6 @@ func clear() -> void:
 
 
 func _process(_delta: float) -> void:
-	## Hide arrows that are not facing the camera
-	var cam_dist_origin = %Camera.global_position.distance_to(Vector3.ZERO)
 	for arrow in get_children():
-		var normal = %Camera.to_local(arrow.normal)
-		arrow.visible = (normal.z + cam_dist_origin) > 0
+		var normal = %CameraPivot.to_local(arrow.normal)
+		arrow.visible = normal.angle_to(Vector3.BACK) < VISIBILITY_ANGLE
