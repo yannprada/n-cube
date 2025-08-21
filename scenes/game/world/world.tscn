@@ -34,7 +34,7 @@ script = ExtResource("5_gb53w")
 
 [node name="Camera" type="Camera3D" parent="CameraPivot"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 current = true
 script = ExtResource("6_5qq27")
 

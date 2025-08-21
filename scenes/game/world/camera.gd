@@ -1,20 +1,14 @@
 extends Camera3D
 
-@export var zoom_in_button: Button
-const MOUSE_SENSITIVITY: float = 0.5
-const BUTTON_SENSITIVITY: float = 2
-const Z_CLAMP: Vector2 = Vector2(3, 20)
+const BUTTON_SENSITIVITY: float = 0.1
+const Z_MIN: float = 3
+const Z_MAX: float = 20
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	## Handle zoom
-	if Input.is_action_just_pressed("MWU"):
-		position.z -= MOUSE_SENSITIVITY
-	if Input.is_action_just_pressed("MWD"):
-		position.z += MOUSE_SENSITIVITY
-	# Prevent zooming past the cube
-	position.z = clamp(position.z, Z_CLAMP.x, Z_CLAMP.y)
-
-
-func zoom(direction: int) -> void:
-	position.z += direction * BUTTON_SENSITIVITY
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("Zoom In"):
+		position.z -= BUTTON_SENSITIVITY
+	if Input.is_action_pressed("Zoom Out"):
+		position.z += BUTTON_SENSITIVITY
+	
+	position.z = clamp(position.z, Z_MIN, Z_MAX)

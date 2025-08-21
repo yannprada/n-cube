@@ -3,7 +3,6 @@ extends Control
 @export var config: Resource
 
 signal new_game(size: int, moves: int)
-signal zoom(direction: int)
 
 
 func _ready() -> void:
@@ -56,17 +55,32 @@ func _on_options_pressed() -> void:
 	%OptionsPanel.visible = not %OptionsPanel.visible
 
 
-# ZOOM
-func _on_zoom_in_pressed() -> void:
-	zoom.emit(-1)
-
-
-func _on_zoom_out_pressed() -> void:
-	zoom.emit(1)
-
-
 # INFOS
 func _on_infos_pressed() -> void:
 	%NewGamePanel.hide()
 	%OptionsPanel.hide()
 	%InfosPanel.visible = not %InfosPanel.visible
+
+
+# ZOOM
+func _fire_action(action_name: String, pressed: bool) -> void:
+	var event = InputEventAction.new()
+	event.action = action_name
+	event.pressed = pressed
+	Input.parse_input_event(event)
+
+
+func _on_zoom_in_button_down() -> void:
+	_fire_action('Zoom In', true)
+
+
+func _on_zoom_in_button_up() -> void:
+	_fire_action('Zoom In', false)
+
+
+func _on_zoom_out_button_down() -> void:
+	_fire_action('Zoom Out', true)
+
+
+func _on_zoom_out_button_up() -> void:
+	_fire_action('Zoom Out', false)

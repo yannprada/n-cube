@@ -14,4 +14,3 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [connection signal="new_game" from="UI" to="." method="_on_ui_new_game"]
-[connection signal="zoom" from="UI" to="." method="_on_ui_zoom"]

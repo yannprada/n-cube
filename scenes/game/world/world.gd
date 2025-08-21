@@ -5,10 +5,6 @@ const AXES = [Vector3.UP, Vector3.DOWN, Vector3.LEFT, Vector3.RIGHT, Vector3.BAC
 var exterior_positions: Array[Vector3]
 
 
-func zoom(direction: int) -> void:
-	%Camera.zoom(direction)
-
-
 func generate(size: int = 3) -> void:
 	## Generate a Rubik's Cube and the Arrows to manipulate it.
 	exterior_positions = []
