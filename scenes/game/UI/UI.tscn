@@ -401,7 +401,7 @@ theme_override_constants/margin_bottom = 20
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="InfosPanel/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="InfosPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Controls"
 label_settings = SubResource("LabelSettings_v0fiw")
@@ -412,7 +412,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
 
-[node name="RichTextLabel" type="Label" parent="InfosPanel/MarginContainer/VBoxContainer"]
+[node name="Text" type="Label" parent="InfosPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Tap anywhere where there is no button and drag to rotate the camera.
 
@@ -421,6 +421,22 @@ Use the arrows on the faces of the cube to rotate a layer.
 Good luck :)"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="InfosPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="OK" type="Button" parent="InfosPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iotsf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xa8c5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lc2xo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xa8c5")
+text = "OK"
+icon = ExtResource("5_u6q2i")
+expand_icon = true
 
 [connection signal="pressed" from="TopLeft/Infos" to="." method="_on_infos_pressed"]
 [connection signal="pressed" from="TopRight/Options" to="." method="_on_options_pressed"]
@@ -433,3 +449,4 @@ autowrap_mode = 3
 [connection signal="pressed" from="NewGamePanel/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_new_game_ok_pressed"]
 [connection signal="pressed" from="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_options_cancel_pressed"]
 [connection signal="pressed" from="OptionsPanel/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_options_ok_pressed"]
+[connection signal="pressed" from="InfosPanel/MarginContainer/VBoxContainer/OK" to="." method="_on_infos_ok_pressed"]

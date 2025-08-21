@@ -1,3 +1,2 @@
-- info closing button
 - test a more user friendly slider alternative
 - add volume controls

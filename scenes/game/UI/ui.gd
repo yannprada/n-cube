@@ -69,6 +69,11 @@ func _on_infos_pressed() -> void:
 	button_click.emit()
 
 
+func _on_infos_ok_pressed() -> void:
+	%InfosPanel.hide()
+	button_click.emit()
+
+
 # ZOOM
 func _fire_action(action_name: String, pressed: bool) -> void:
 	var event = InputEventAction.new()
