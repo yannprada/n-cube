@@ -34,6 +34,7 @@ func _on_new_game_cancel_pressed() -> void:
 
 func _on_new_game_pressed() -> void:
 	%OptionsPanel.hide()
+	%InfosPanel.hide()
 	%NewGamePanel.visible = not %NewGamePanel.visible
 
 
@@ -51,6 +52,7 @@ func _on_options_cancel_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	%NewGamePanel.hide()
+	%InfosPanel.hide()
 	%OptionsPanel.visible = not %OptionsPanel.visible
 
 
@@ -61,3 +63,10 @@ func _on_zoom_in_pressed() -> void:
 
 func _on_zoom_out_pressed() -> void:
 	zoom.emit(1)
+
+
+# INFOS
+func _on_infos_pressed() -> void:
+	%NewGamePanel.hide()
+	%OptionsPanel.hide()
+	%InfosPanel.visible = not %InfosPanel.visible

@@ -1,17 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://vyvu0gq6q5xk"]
+[gd_scene load_steps=28 format=3 uid="uid://vyvu0gq6q5xk"]
 
 [ext_resource type="Script" uid="uid://cyuyfumpe4tkw" path="res://scenes/game/UI/ui.gd" id="1_lj5up"]
 [ext_resource type="Resource" uid="uid://dcl4hnr4dyixa" path="res://config.tres" id="2_1p530"]
-[ext_resource type="Texture2D" path="res://assets/shuffle75.png" id="2_wgnrc"]
-[ext_resource type="Texture2D" path="res://assets/shuffle75pressed.png" id="3_84lt7"]
-[ext_resource type="Texture2D" path="res://assets/cancel75.png" id="4_2ttv2"]
-[ext_resource type="Texture2D" path="res://assets/ok75.png" id="5_u6q2i"]
-[ext_resource type="Texture2D" path="res://assets/settings75pressed.png" id="5_ydonv"]
-[ext_resource type="Texture2D" path="res://assets/zoom_in50.png" id="6_d5j55"]
-[ext_resource type="PackedScene" path="res://scenes/label_slider/label_slider.tscn" id="6_ydonv"]
-[ext_resource type="Texture2D" path="res://assets/zoom_in50pressed.png" id="7_1p530"]
-[ext_resource type="Texture2D" path="res://assets/zoom_out50.png" id="8_v0fiw"]
-[ext_resource type="Texture2D" path="res://assets/zoom_out50pressed.png" id="9_xqeyu"]
+[ext_resource type="Texture2D" uid="uid://c7c8fh4qy7sag" path="res://assets/shuffle75.png" id="2_wgnrc"]
+[ext_resource type="Texture2D" uid="uid://7m30y7ntsdnc" path="res://assets/shuffle75pressed.png" id="3_84lt7"]
+[ext_resource type="Texture2D" uid="uid://bugty0dcygaqb" path="res://assets/i75.png" id="3_v0fiw"]
+[ext_resource type="Texture2D" uid="uid://bmmk0v02h1w1j" path="res://assets/cancel75.png" id="4_2ttv2"]
+[ext_resource type="Texture2D" uid="uid://drnmjqffwvu1b" path="res://assets/i75pressed.png" id="4_xqeyu"]
+[ext_resource type="Texture2D" uid="uid://bkhfa3ms27732" path="res://assets/ok75.png" id="5_u6q2i"]
+[ext_resource type="Texture2D" uid="uid://bwabsrmtmyugy" path="res://assets/settings75pressed.png" id="5_ydonv"]
+[ext_resource type="Texture2D" uid="uid://b1i7vtlxywnv6" path="res://assets/zoom_in50.png" id="6_d5j55"]
+[ext_resource type="PackedScene" uid="uid://dw6vahsano2yk" path="res://scenes/label_slider/label_slider.tscn" id="6_ydonv"]
+[ext_resource type="Texture2D" uid="uid://nwg5iajkcouy" path="res://assets/zoom_in50pressed.png" id="7_1p530"]
+[ext_resource type="Texture2D" uid="uid://bobhphycgrbx2" path="res://assets/zoom_out50.png" id="8_v0fiw"]
+[ext_resource type="Texture2D" uid="uid://bkfcaepbn2ina" path="res://assets/zoom_out50pressed.png" id="9_xqeyu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1p530"]
 font_size = 10
@@ -84,6 +86,10 @@ corner_radius_bottom_left = 5
 font_size = 30
 font_color = Color(1, 0.453333, 0.2, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_v0fiw"]
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -112,6 +118,19 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "debug text"
 label_settings = SubResource("LabelSettings_1p530")
+
+[node name="TopLeft" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="Infos" type="TextureButton" parent="TopLeft"]
+layout_mode = 2
+tooltip_text = "Infos"
+texture_normal = ExtResource("3_v0fiw")
+texture_pressed = ExtResource("4_xqeyu")
 
 [node name="TopRight" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -243,7 +262,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
 unique_name_in_owner = true
 layout_mode = 2
 value = 30.0
-message = "Scrambling Moves: %.0f"
+message = "Scrambling Rotations: %.0f"
 
 [node name="HSeparator4" type="HSeparator" parent="NewGamePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -354,6 +373,56 @@ text = "OK"
 icon = ExtResource("5_u6q2i")
 expand_icon = true
 
+[node name="InfosPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -20.0
+offset_right = 20.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iotsf")
+
+[node name="MarginContainer" type="MarginContainer" parent="InfosPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfosPanel/MarginContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InfosPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+label_settings = SubResource("LabelSettings_v0fiw")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="InfosPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="RichTextLabel" type="Label" parent="InfosPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tap anywhere where there is no button and drag to rotate the camera.
+
+Use the arrows on the faces of the cube to rotate a layer.
+
+Good luck :)"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="TopLeft/Infos" to="." method="_on_infos_pressed"]
 [connection signal="pressed" from="TopRight/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="BottomRight/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="BottomLeft/VBoxContainer/ZoomIn" to="." method="_on_zoom_in_pressed"]

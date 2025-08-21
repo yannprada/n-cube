@@ -1,0 +1,4 @@
+- information panel
+- fix zoom
+- add sound
+- add sound volume slider
