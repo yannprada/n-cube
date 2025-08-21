@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dknxotbcrytcs"]
+[gd_scene load_steps=6 format=3 uid="uid://dknxotbcrytcs"]
 
 [ext_resource type="Script" uid="uid://dff37uied0yv8" path="res://scenes/game/game.gd" id="1_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://vyvu0gq6q5xk" path="res://scenes/game/UI/UI.tscn" id="2_87uf6"]
 [ext_resource type="PackedScene" uid="uid://c7w5dv258poe" path="res://scenes/game/world/world.tscn" id="3_0sr1o"]
+[ext_resource type="AudioStream" uid="uid://vikfkforkxc1" path="res://audio/click.wav" id="4_lfrn8"]
+[ext_resource type="AudioStream" uid="uid://3fouf7xgvxrs" path="res://audio/scratch.wav" id="5_5i0tg"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_j5wjh")
@@ -13,4 +15,14 @@ unique_name_in_owner = true
 [node name="World" parent="." instance=ExtResource("3_0sr1o")]
 unique_name_in_owner = true
 
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_lfrn8")
+
+[node name="ScratchPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_5i0tg")
+
+[connection signal="button_click" from="UI" to="." method="_on_ui_button_click"]
 [connection signal="new_game" from="UI" to="." method="_on_ui_new_game"]
+[connection signal="rotating" from="World" to="." method="_on_world_rotating"]

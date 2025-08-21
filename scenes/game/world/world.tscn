@@ -38,4 +38,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 current = true
 script = ExtResource("6_5qq27")
 
+[connection signal="rotating" from="RubiksCube" to="." method="_on_rubiks_cube_rotating"]
 [connection signal="clicked" from="Arrows" to="RubiksCube" method="_on_arrows_clicked"]

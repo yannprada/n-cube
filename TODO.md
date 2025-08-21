@@ -1,3 +1,3 @@
-- add sound
-- add sound volume slider
+- info closing button
 - test a more user friendly slider alternative
+- add volume controls

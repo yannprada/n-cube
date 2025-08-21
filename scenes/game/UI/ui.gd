@@ -3,6 +3,7 @@ extends Control
 @export var config: Resource
 
 signal new_game(size: int, moves: int)
+signal button_click
 
 
 func _ready() -> void:
@@ -29,12 +30,14 @@ func _on_new_game_cancel_pressed() -> void:
 	%NewGamePanel.hide()
 	%SizeSlider.value = config.cube_size
 	%ScramblingSlider.value = config.scrambling_moves
+	button_click.emit()
 
 
 func _on_new_game_pressed() -> void:
 	%OptionsPanel.hide()
 	%InfosPanel.hide()
 	%NewGamePanel.visible = not %NewGamePanel.visible
+	button_click.emit()
 
 
 # OPTIONS
@@ -42,17 +45,20 @@ func _on_options_ok_pressed() -> void:
 	%OptionsPanel.hide()
 	config.animation_length = %AnimationLength.value
 	config.save()
+	button_click.emit()
 
 
 func _on_options_cancel_pressed() -> void:
 	%OptionsPanel.hide()
 	%AnimationLength.value = config.animation_length
+	button_click.emit()
 
 
 func _on_options_pressed() -> void:
 	%NewGamePanel.hide()
 	%InfosPanel.hide()
 	%OptionsPanel.visible = not %OptionsPanel.visible
+	button_click.emit()
 
 
 # INFOS
@@ -60,6 +66,7 @@ func _on_infos_pressed() -> void:
 	%NewGamePanel.hide()
 	%OptionsPanel.hide()
 	%InfosPanel.visible = not %InfosPanel.visible
+	button_click.emit()
 
 
 # ZOOM
@@ -68,6 +75,7 @@ func _fire_action(action_name: String, pressed: bool) -> void:
 	event.action = action_name
 	event.pressed = pressed
 	Input.parse_input_event(event)
+	button_click.emit()
 
 
 func _on_zoom_in_button_down() -> void:

@@ -4,6 +4,8 @@ const AXES = [Vector3.UP, Vector3.DOWN, Vector3.LEFT, Vector3.RIGHT, Vector3.BAC
 
 var exterior_positions: Array[Vector3]
 
+signal rotating
+
 
 func generate(size: int = 3) -> void:
 	## Generate a Rubik's Cube and the Arrows to manipulate it.
@@ -45,3 +47,7 @@ func scramble(moves: int) -> void:
 func clear() -> void:
 	%RubiksCube.clear()
 	%Arrows.clear()
+
+
+func _on_rubiks_cube_rotating() -> void:
+	rotating.emit()

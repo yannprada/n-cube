@@ -5,6 +5,8 @@ const POS_ACCURACY: float = 0.1
 
 var is_rotating: bool = false
 
+signal rotating
+
 
 func add_box(pos: Vector3, faces_normals: Array[Vector3i]) -> void:
 	var box = BOX_SCENE.instantiate()
@@ -16,7 +18,7 @@ func rotate_layer(layer: Vector3, axis: Vector3) -> Tween:
 	if is_rotating:
 		return
 	
-	# Prevent other rotations at the same time
+	# Prevent multiple rotations at the same time
 	is_rotating = true
 	
 	# Move the layer of boxes to Pivot
@@ -29,6 +31,7 @@ func rotate_layer(layer: Vector3, axis: Vector3) -> Tween:
 			box.reparent(%Pivot)
 	
 	# Animate the rotation
+	rotating.emit()
 	var tween = %Pivot.tween_rotate(axis)
 	tween.tween_callback(rotation_callback)
 	return tween
