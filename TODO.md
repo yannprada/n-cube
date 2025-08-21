@@ -1,4 +1,4 @@
-- information panel
 - fix zoom
 - add sound
 - add sound volume slider
+- test a more user friendly slider alternative
