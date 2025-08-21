@@ -1,2 +1,3 @@
-- test a more user friendly slider alternative
+- replace all sliders with the new NamedSpinbox
+- resize accordingly
 - add volume controls

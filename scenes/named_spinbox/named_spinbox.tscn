@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://biqcfjfvwqhbf"]
+
+[ext_resource type="Script" uid="uid://fr2300qsdjtt" path="res://scenes/named_spinbox/named_spinbox.gd" id="1_xbq5x"]
+
+[node name="NamedSpinbox" type="HBoxContainer"]
+script = ExtResource("1_xbq5x")
+_name = "Foo:"
+value_max = 1.0
+value_increment = 0.1
+value_digits = 1
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<Name>:"
+
+[node name="Subtract" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="ValueDisplay" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="Add" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+"
+
+[connection signal="pressed" from="Subtract" to="." method="_on_subtract_pressed"]
+[connection signal="pressed" from="Add" to="." method="_on_add_pressed"]
