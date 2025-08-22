@@ -7,6 +7,8 @@ extends VBoxContainer
 @export var increment: float = 1
 @export var rounded: bool
 
+signal value_changed(_value: float)
+
 
 func _ready() -> void:
 	%Title.text = title
@@ -18,9 +20,15 @@ func _ready() -> void:
 	update_display()
 
 
+func init(_value: float) -> void:
+	%HSlider.value = _value
+	_on_value_changed(_value)
+
+
 func _on_value_changed(_value: float) -> void:
 	value = _value
 	update_display()
+	value_changed.emit(_value)
 
 
 func update_display() -> void:

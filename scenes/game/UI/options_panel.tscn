@@ -128,11 +128,28 @@ layout_mode = 2
 theme_override_constants/separation = 50
 theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
 
-[node name="LabelSlider" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_j483m")]
+[node name="VolumeSlider" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_j483m")]
+unique_name_in_owner = true
 layout_mode = 2
 title = "Volume"
 value = 5.0
 rounded = true
+
+[node name="CubeSounds" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Cube Sounds"
+
+[node name="UISounds" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "UI Sounds"
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -164,5 +181,6 @@ text = "OK"
 icon = ExtResource("3_od23m")
 expand_icon = true
 
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]

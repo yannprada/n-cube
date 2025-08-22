@@ -168,4 +168,5 @@ offset_bottom = 231.0
 [connection signal="ok" from="NewGamePanel" to="." method="_on_new_game_ok_pressed"]
 [connection signal="cancel" from="OptionsPanel" to="." method="on_button_click"]
 [connection signal="ok" from="OptionsPanel" to="." method="_on_options_ok_pressed"]
+[connection signal="volume_changed" from="OptionsPanel" to="." method="on_button_click"]
 [connection signal="ok" from="InfosPanel" to="." method="on_button_click"]

@@ -11,6 +11,7 @@ signal button_click
 
 func _ready() -> void:
 	config.load()
+	AudioServer.set_bus_volume_linear(0, config.volume)
 	new_game_panel.init(config.cube_size, config.scrambling_moves)
 	options_panel.init(config.animation_length)
 
@@ -47,8 +48,9 @@ func _on_new_game_pressed() -> void:
 
 
 # OPTIONS
-func _on_options_ok_pressed(animation_length: float) -> void:
+func _on_options_ok_pressed(animation_length: float, volume: float) -> void:
 	config.animation_length = animation_length
+	config.volume = volume
 	config.save()
 	button_click.emit()
 
