@@ -19,6 +19,14 @@ func on_button_click():
 	button_click.emit()
 
 
+func toggle_panel(target_panel: PanelContainer) -> void:
+	for panel in [new_game_panel, options_panel, infos_panel]:
+		if panel == target_panel:
+			panel.visible = not panel.visible
+		else:
+			panel.hide()
+
+
 # NEW GAME
 func _on_new_game_ok_pressed(cube_size: int, scrambling_moves: int) -> void:
 	config.cube_size = cube_size
@@ -34,9 +42,7 @@ func on_rotating_done() -> void:
 
 func _on_new_game_pressed() -> void:
 	new_game_panel.init(config.cube_size, config.scrambling_moves)
-	options_panel.hide()
-	infos_panel.hide()
-	new_game_panel.visible = not new_game_panel.visible
+	toggle_panel(new_game_panel)
 	button_click.emit()
 
 
@@ -49,17 +55,13 @@ func _on_options_ok_pressed(animation_length: float) -> void:
 
 func _on_options_pressed() -> void:
 	options_panel.init(config.animation_length)
-	new_game_panel.hide()
-	infos_panel.hide()
-	options_panel.visible = not options_panel.visible
+	toggle_panel(options_panel)
 	button_click.emit()
 
 
 # INFOS
 func _on_infos_pressed() -> void:
-	new_game_panel.hide()
-	options_panel.hide()
-	infos_panel.visible = not infos_panel.visible
+	toggle_panel(infos_panel)
 	button_click.emit()
 
 
