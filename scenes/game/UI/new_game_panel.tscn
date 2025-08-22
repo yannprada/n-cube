@@ -1,0 +1,179 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0827oloabrwv"]
+
+[ext_resource type="Script" uid="uid://b5yrs1ifqsfj7" path="res://scenes/game/UI/new_game_panel.gd" id="1_h7dek"]
+[ext_resource type="Texture2D" uid="uid://bmmk0v02h1w1j" path="res://assets/cancel75.png" id="2_h7dek"]
+[ext_resource type="PackedScene" uid="uid://biqcfjfvwqhbf" path="res://scenes/spinbox_with_buttons/spinbox_with_buttons.tscn" id="2_ubc1t"]
+[ext_resource type="Texture2D" uid="uid://bkhfa3ms27732" path="res://assets/ok75.png" id="3_ubc1t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjckw"]
+font_size = 30
+font_color = Color(0.5, 0.5, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc2xo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_215e1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sc4i"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.588235, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80cx4"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iotsf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa8c5"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0.5, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc2xo"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0.701961, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="NewGamePanel" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -182.5
+offset_right = 178.0
+offset_bottom = 182.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iotsf")
+script = ExtResource("1_h7dek")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+label_settings = SubResource("LabelSettings_mjckw")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cube Size"
+
+[node name="Size" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_ubc1t")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+value = 10.0
+_min = 2.0
+_max = 9.0
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Scrambling 
+rotations"
+
+[node name="Scrambles" parent="MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_ubc1t")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+value = 25.0
+_max = 50.0
+increment = 5.0
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_215e1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7sc4i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_80cx4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7sc4i")
+text = "CANCEL"
+icon = ExtResource("2_h7dek")
+expand_icon = true
+
+[node name="OK" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iotsf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xa8c5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lc2xo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xa8c5")
+text = "OK"
+icon = ExtResource("3_ubc1t")
+expand_icon = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]

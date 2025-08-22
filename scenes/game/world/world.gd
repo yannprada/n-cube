@@ -5,6 +5,7 @@ const AXES = [Vector3.UP, Vector3.DOWN, Vector3.LEFT, Vector3.RIGHT, Vector3.BAC
 var exterior_positions: Array[Vector3]
 
 signal rotating
+signal rotating_done
 
 
 func generate(size: int = 3) -> void:
@@ -42,6 +43,7 @@ func scramble(moves: int) -> void:
 		var layer = pos * axis.abs()
 		var tween = %RubiksCube.rotate_layer(layer, axis)
 		await tween.finished
+	rotating_done.emit()
 
 
 func clear() -> void:

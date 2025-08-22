@@ -26,3 +26,4 @@ stream = ExtResource("5_5i0tg")
 [connection signal="button_click" from="UI" to="." method="_on_ui_button_click"]
 [connection signal="new_game" from="UI" to="." method="_on_ui_new_game"]
 [connection signal="rotating" from="World" to="." method="_on_world_rotating"]
+[connection signal="rotating_done" from="World" to="." method="_on_world_rotating_done"]

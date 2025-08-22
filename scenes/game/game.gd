@@ -13,3 +13,7 @@ func _on_ui_button_click() -> void:
 
 func _on_world_rotating() -> void:
 	%ScratchPlayer.play()
+
+
+func _on_world_rotating_done() -> void:
+	%UI.on_rotating_done()

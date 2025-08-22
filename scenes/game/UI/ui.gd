@@ -1,5 +1,8 @@
 extends Control
 
+@export var new_game_panel: PanelContainer
+@export var options_panel: PanelContainer
+@export var infos_panel: PanelContainer
 @export var config: Resource
 
 signal new_game(size: int, moves: int)
@@ -8,69 +11,66 @@ signal button_click
 
 func _ready() -> void:
 	config.load()
-	%SizeSlider.value = config.cube_size
-	%ScramblingSlider.value = config.scrambling_moves
+	new_game_panel.init(config.cube_size, config.scrambling_moves)
 	%AnimationLength.value = config.animation_length
 
 
 # NEW GAME
-func _on_new_game_ok_pressed() -> void:
-	config.cube_size = %SizeSlider.value
-	config.scrambling_moves = %ScramblingSlider.value
+func _on_new_game_ok_pressed(cube_size: int, scrambling_moves: int) -> void:
+	config.cube_size = cube_size
+	config.scrambling_moves = scrambling_moves
 	config.save()
-	new_game.emit(config.cube_size, config.scrambling_moves)
-	
-	%NewGamePanel.hide()
+	new_game.emit(cube_size, scrambling_moves)
 	%NewGame.disabled = true
-	await get_tree().create_timer(config.get_scramble_time()).timeout
+
+
+func on_rotating_done() -> void:
 	%NewGame.disabled = false
 
 
 func _on_new_game_cancel_pressed() -> void:
-	%NewGamePanel.hide()
-	%SizeSlider.value = config.cube_size
-	%ScramblingSlider.value = config.scrambling_moves
 	button_click.emit()
 
 
 func _on_new_game_pressed() -> void:
-	%OptionsPanel.hide()
-	%InfosPanel.hide()
-	%NewGamePanel.visible = not %NewGamePanel.visible
+	new_game_panel.init(config.cube_size, config.scrambling_moves)
+	options_panel.hide()
+	infos_panel.hide()
+	new_game_panel.visible = not new_game_panel.visible
 	button_click.emit()
 
 
 # OPTIONS
 func _on_options_ok_pressed() -> void:
-	%OptionsPanel.hide()
+	options_panel.hide()
 	config.animation_length = %AnimationLength.value
 	config.save()
 	button_click.emit()
 
 
 func _on_options_cancel_pressed() -> void:
-	%OptionsPanel.hide()
+	options_panel.hide()
 	%AnimationLength.value = config.animation_length
 	button_click.emit()
 
 
 func _on_options_pressed() -> void:
-	%NewGamePanel.hide()
-	%InfosPanel.hide()
-	%OptionsPanel.visible = not %OptionsPanel.visible
+	new_game_panel.hide()
+	infos_panel.hide()
+	options_panel.visible = not options_panel.visible
 	button_click.emit()
 
 
 # INFOS
 func _on_infos_pressed() -> void:
-	%NewGamePanel.hide()
-	%OptionsPanel.hide()
-	%InfosPanel.visible = not %InfosPanel.visible
+	new_game_panel.hide()
+	options_panel.hide()
+	infos_panel.visible = not infos_panel.visible
 	button_click.emit()
 
 
 func _on_infos_ok_pressed() -> void:
-	%InfosPanel.hide()
+	infos_panel.hide()
 	button_click.emit()
 
 
