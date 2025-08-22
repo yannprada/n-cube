@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://biqcfjfvwqhbf"]
+
+[ext_resource type="Script" uid="uid://fr2300qsdjtt" path="res://scenes/spinbox_with_buttons/spinbox_with_buttons.gd" id="1_3fiam"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fiam"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fiam"]
+
+[node name="SpinboxWithButtons" type="PanelContainer"]
+offset_right = 183.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3fiam")
+script = ExtResource("1_3fiam")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Subtract" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fiam")
+text = " - "
+
+[node name="ValueDisplay" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = " 0 "
+
+[node name="Add" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fiam")
+text = " + "
+
+[connection signal="pressed" from="HBoxContainer/Subtract" to="." method="_on_subtract_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add" to="." method="_on_add_pressed"]
