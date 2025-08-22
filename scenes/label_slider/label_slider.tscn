@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw6vahsano2yk"]
+[gd_scene load_steps=6 format=3 uid="uid://dw6vahsano2yk"]
 
 [ext_resource type="Script" uid="uid://chefx50x7014d" path="res://scenes/label_slider/label_slider.gd" id="1_hmeit"]
+
+[sub_resource type="Gradient" id="Gradient_hmeit"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srvwf"]
+gradient = SubResource("Gradient_hmeit")
+width = 30
+height = 30
+fill_from = Vector2(1, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1gkxp"]
+color = Color(0.333333, 0.333333, 0.333333, 1)
+thickness = 30
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hmeit"]
+color = Color(1, 1, 1, 1)
+thickness = 30
 
 [node name="LabelSlider" type="VBoxContainer"]
 offset_right = 480.0
@@ -25,5 +41,11 @@ text = "0"
 [node name="HSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_icons/grabber = SubResource("GradientTexture2D_srvwf")
+theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_srvwf")
+theme_override_styles/slider = SubResource("StyleBoxLine_1gkxp")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_hmeit")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_hmeit")
+value = 50.0
 
 [connection signal="value_changed" from="HSlider" to="." method="_on_value_changed"]
