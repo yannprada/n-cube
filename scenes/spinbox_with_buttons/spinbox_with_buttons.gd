@@ -1,4 +1,4 @@
-extends PanelContainer
+extends HBoxContainer
 
 @export var value: float = 0:
 	set = set_value

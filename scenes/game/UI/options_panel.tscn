@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cry8p2uetebcl"]
+[gd_scene load_steps=15 format=3 uid="uid://cry8p2uetebcl"]
 
 [ext_resource type="Script" uid="uid://bs8ynhur3lqd3" path="res://scenes/game/UI/options_panel.gd" id="1_g2s7c"]
+[ext_resource type="PackedScene" uid="uid://dw6vahsano2yk" path="res://scenes/label_slider/label_slider.tscn" id="1_j483m"]
 [ext_resource type="Texture2D" uid="uid://bmmk0v02h1w1j" path="res://assets/cancel75.png" id="2_g2s7c"]
 [ext_resource type="PackedScene" uid="uid://biqcfjfvwqhbf" path="res://scenes/spinbox_with_buttons/spinbox_with_buttons.tscn" id="2_od23m"]
 [ext_resource type="Texture2D" uid="uid://bkhfa3ms27732" path="res://assets/ok75.png" id="3_od23m"]
@@ -121,6 +122,16 @@ value = 0.1
 _max = 1.0
 increment = 0.1
 digits = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
+
+[node name="LabelSlider" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_j483m")]
+layout_mode = 2
+step = 10.0
+message = "Volume UI: %.0f"
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
