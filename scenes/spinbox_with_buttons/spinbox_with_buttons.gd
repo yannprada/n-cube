@@ -22,4 +22,4 @@ func _on_subtract_pressed() -> void:
 
 
 func update_display() -> void:
-	%ValueDisplay.text = ' %.*f ' % [digits, value]
+	%ValueDisplay.text = '%.*f' % [digits, value]
