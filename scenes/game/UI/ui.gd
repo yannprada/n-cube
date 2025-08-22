@@ -12,7 +12,11 @@ signal button_click
 func _ready() -> void:
 	config.load()
 	new_game_panel.init(config.cube_size, config.scrambling_moves)
-	%AnimationLength.value = config.animation_length
+	options_panel.init(config.animation_length)
+
+
+func on_button_click():
+	button_click.emit()
 
 
 # NEW GAME
@@ -28,10 +32,6 @@ func on_rotating_done() -> void:
 	%NewGame.disabled = false
 
 
-func _on_new_game_cancel_pressed() -> void:
-	button_click.emit()
-
-
 func _on_new_game_pressed() -> void:
 	new_game_panel.init(config.cube_size, config.scrambling_moves)
 	options_panel.hide()
@@ -41,20 +41,14 @@ func _on_new_game_pressed() -> void:
 
 
 # OPTIONS
-func _on_options_ok_pressed() -> void:
-	options_panel.hide()
-	config.animation_length = %AnimationLength.value
+func _on_options_ok_pressed(animation_length: float) -> void:
+	config.animation_length = animation_length
 	config.save()
 	button_click.emit()
 
 
-func _on_options_cancel_pressed() -> void:
-	options_panel.hide()
-	%AnimationLength.value = config.animation_length
-	button_click.emit()
-
-
 func _on_options_pressed() -> void:
+	options_panel.init(config.animation_length)
 	new_game_panel.hide()
 	infos_panel.hide()
 	options_panel.visible = not options_panel.visible
@@ -66,11 +60,6 @@ func _on_infos_pressed() -> void:
 	new_game_panel.hide()
 	options_panel.hide()
 	infos_panel.visible = not infos_panel.visible
-	button_click.emit()
-
-
-func _on_infos_ok_pressed() -> void:
-	infos_panel.hide()
 	button_click.emit()
 
 
