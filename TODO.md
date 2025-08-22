@@ -1,2 +1,2 @@
-- add volume controls
+- connect volume controls
 - add button noise on +-

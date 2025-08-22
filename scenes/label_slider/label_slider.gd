@@ -1,15 +1,30 @@
-extends HSlider
+extends VBoxContainer
 
-@export var message: String = 'Value: %f'
+@export var title: String
+@export var value: float = 0
+@export var _min: float = 0
+@export var _max: float = 10
+@export var increment: float = 1
+@export var rounded: bool
 
 
 func _ready() -> void:
-	_update_label(value)
+	%Title.text = title
+	%HSlider.value = value
+	%HSlider.min_value = _min
+	%HSlider.max_value = _max
+	%HSlider.step = increment
+	%HSlider.rounded = rounded
+	update_display()
 
 
 func _on_value_changed(_value: float) -> void:
-	_update_label(_value)
+	value = _value
+	update_display()
 
 
-func _update_label(_value: float) -> void:
-	%Label.text = message % _value
+func update_display() -> void:
+	if rounded:
+		%ValueDisplay.text = '%d' % [value]
+	else:
+		%ValueDisplay.text = '%f' % [value]

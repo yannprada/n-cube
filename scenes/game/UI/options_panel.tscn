@@ -130,8 +130,9 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
 
 [node name="LabelSlider" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_j483m")]
 layout_mode = 2
-step = 10.0
-message = "Volume UI: %.0f"
+title = "Volume"
+value = 5.0
+rounded = true
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
