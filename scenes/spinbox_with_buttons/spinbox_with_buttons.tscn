@@ -48,12 +48,13 @@ script = ExtResource("1_3fiam")
 [node name="Subtract" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3fiam")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7hqf7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7em0f")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_k1qa4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7em0f")
-text = " - "
+text = "  -  "
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -69,12 +70,13 @@ horizontal_alignment = 1
 [node name="Add" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3fiam")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_k1qa4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_b5oed")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy5j")
 theme_override_styles/normal = SubResource("StyleBoxFlat_b5oed")
-text = " + "
+text = "  +  "
 
 [connection signal="pressed" from="Subtract" to="." method="_on_subtract_pressed"]
 [connection signal="pressed" from="Add" to="." method="_on_add_pressed"]

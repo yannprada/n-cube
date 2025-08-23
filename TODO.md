@@ -1,2 +1,2 @@
-- fix: font fallback
 - add button noise on +-
+- change package name (Exports / Android / Package Unique Name)
