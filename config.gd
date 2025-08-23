@@ -3,7 +3,7 @@ extends Node
 @export_range(2, 10) var cube_size: int = 3
 @export_range(0, 100) var scrambling_moves: int = 25
 @export_range(0, 2) var animation_length: float = 0.1
-@export_range(0, 10) var cube_volume: float = 5
+@export_range(0, 10) var cube_volume: float = 1
 @export_range(0, 10) var UI_volume: float = 5
 
 var save_file_path: String = OS.get_user_data_dir() + '/config.json'

@@ -1,19 +1,35 @@
 extends PanelContainer
 
-signal ok(cube_size: int, scrambling_moves: int)
-signal cancel
+signal button_clicked
+signal ok
 
 
-func init(cube_size: int, scrambling_moves: int) -> void:
-	%Size.value = cube_size
-	%Scrambles.value = scrambling_moves
+func _ready() -> void:
+	%Size.value = Config.cube_size
+	%Scrambles.value = Config.scrambling_moves
 
 
 func _on_ok_pressed() -> void:
-	ok.emit(%Size.value, %Scrambles.value)
+	button_clicked.emit()
 	hide()
+	await get_tree().create_timer(0.25).timeout
+	ok.emit()
 
 
 func _on_cancel_pressed() -> void:
-	cancel.emit()
+	button_clicked.emit()
 	hide()
+
+
+func _on_size_value_changed(value: int) -> void:
+	if is_node_ready():
+		Config.cube_size = value
+		Config.save()
+		button_clicked.emit()
+
+
+func _on_scrambles_value_changed(value: int) -> void:
+	if is_node_ready():
+		Config.scrambling_moves = value
+		Config.save()
+		button_clicked.emit()

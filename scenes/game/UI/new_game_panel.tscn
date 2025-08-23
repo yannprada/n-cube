@@ -175,5 +175,7 @@ text = "OK"
 icon = ExtResource("3_ubc1t")
 expand_icon = true
 
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/Size" to="." method="_on_size_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/Scrambles" to="." method="_on_scrambles_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]

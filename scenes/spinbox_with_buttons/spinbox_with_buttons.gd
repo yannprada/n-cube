@@ -14,17 +14,18 @@ signal value_changed(value: float)
 func set_value(new_value: float) -> void:
 	value = clamp(new_value, _min, _max)
 	update_display()
-	value_changed.emit(value)
 
 
 func _on_add_pressed() -> void:
 	value += increment
 	button_clicked.emit()
+	value_changed.emit(value)
 
 
 func _on_subtract_pressed() -> void:
 	value -= increment
 	button_clicked.emit()
+	value_changed.emit(value)
 
 
 func update_display() -> void:

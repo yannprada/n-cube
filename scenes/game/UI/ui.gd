@@ -9,10 +9,6 @@ signal button_click
 signal cube_clicked
 
 
-func _ready() -> void:
-	new_game_panel.init(Config.cube_size, Config.scrambling_moves)
-
-
 func on_button_click():
 	button_click.emit()
 
@@ -26,11 +22,8 @@ func toggle_panel(target_panel: PanelContainer) -> void:
 
 
 # NEW GAME
-func _on_new_game_ok_pressed(cube_size: int, scrambling_moves: int) -> void:
-	Config.cube_size = cube_size
-	Config.scrambling_moves = scrambling_moves
-	Config.save()
-	new_game.emit(cube_size, scrambling_moves)
+func _on_new_game_ok_pressed() -> void:
+	new_game.emit(Config.cube_size, Config.scrambling_moves)
 	%NewGame.disabled = true
 
 
@@ -39,7 +32,6 @@ func on_rotating_done() -> void:
 
 
 func _on_new_game_pressed() -> void:
-	new_game_panel.init(Config.cube_size, Config.scrambling_moves)
 	toggle_panel(new_game_panel)
 	button_click.emit()
 
