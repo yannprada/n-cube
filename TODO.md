@@ -1,2 +1,2 @@
-- connect volume controls
+- fix: new game panel values not saved
 - add button noise on +-

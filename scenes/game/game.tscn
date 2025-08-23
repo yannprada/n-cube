@@ -18,10 +18,12 @@ unique_name_in_owner = true
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_lfrn8")
+bus = &"UI"
 
 [node name="ScratchPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_5i0tg")
+bus = &"Cube"
 
 [connection signal="button_click" from="UI" to="." method="_on_ui_button_click"]
 [connection signal="new_game" from="UI" to="." method="_on_ui_new_game"]
