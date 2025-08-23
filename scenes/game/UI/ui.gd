@@ -10,9 +10,6 @@ signal button_click
 
 func _ready() -> void:
 	new_game_panel.init(Config.cube_size, Config.scrambling_moves)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Cube"), Config.cube_volume)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("UI"), Config.UI_volume)
-	options_panel.init(Config.animation_length, Config.cube_volume, Config.UI_volume)
 
 
 func on_button_click():
@@ -54,7 +51,6 @@ func _on_options_ok_pressed(animation_length: float) -> void:
 
 
 func _on_options_pressed() -> void:
-	options_panel.init(Config.animation_length, Config.cube_volume, Config.UI_volume)
 	toggle_panel(options_panel)
 	button_click.emit()
 
@@ -88,15 +84,3 @@ func _on_zoom_out_button_down() -> void:
 
 func _on_zoom_out_button_up() -> void:
 	_fire_action('Zoom Out', false)
-
-
-func _on_options_panel_cube_volume_changed(value: float) -> void:
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Cube"), value)
-	Config.cube_volume = value
-	Config.save()
-
-
-func _on_options_panel_ui_volume_changed(value: float) -> void:
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("UI"), value)
-	Config.UI_volume = value
-	Config.save()

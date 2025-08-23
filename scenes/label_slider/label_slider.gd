@@ -22,7 +22,8 @@ func _ready() -> void:
 
 func init(_value: float) -> void:
 	%HSlider.value = _value
-	_on_value_changed(_value)
+	value = _value
+	update_display()
 
 
 func _on_value_changed(_value: float) -> void:
