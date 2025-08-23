@@ -1,2 +1,2 @@
-- fix: volume sliders trigger change and erase config before init method
+- fix: font fallback
 - add button noise on +-

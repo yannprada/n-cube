@@ -27,9 +27,10 @@ func init(_value: float) -> void:
 
 
 func _on_value_changed(_value: float) -> void:
-	value = _value
-	update_display()
-	value_changed.emit(_value)
+	if is_node_ready() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		value = _value
+		update_display()
+		value_changed.emit(_value)
 
 
 func update_display() -> void:

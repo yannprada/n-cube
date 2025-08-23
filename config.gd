@@ -42,8 +42,8 @@ func _load() -> void:
 	if not data:
 		return
 	
-	cube_size = data['cube_size']
-	scrambling_moves = data['scrambling_moves']
-	animation_length = data['animation_length']
-	cube_volume = data['cube_volume']
-	UI_volume = data['UI_volume']
+	cube_size = data.get('cube_size', cube_size)
+	scrambling_moves = data.get('scrambling_moves', scrambling_moves)
+	animation_length = data.get('animation_length', animation_length)
+	cube_volume = data.get('cube_volume', cube_volume)
+	UI_volume = data.get('UI_volume', UI_volume)
