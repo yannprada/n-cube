@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0p8xb7hloowu"]
+[gd_scene load_steps=5 format=3 uid="uid://d0p8xb7hloowu"]
 
-[ext_resource type="Texture2D" uid="uid://bkhfa3ms27732" path="res://assets/ok75.png" id="1_8metx"]
 [ext_resource type="Script" uid="uid://dsco47fo8q75m" path="res://scenes/game/UI/infos_panel.gd" id="1_idg7t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
@@ -12,33 +11,9 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_v0fiw"]
 font_size = 30
-font_color = Color(1, 1, 0, 1)
+font_color = Color(0.4, 0.7, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc2xo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iotsf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa8c5"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0.5, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc2xo"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0.701961, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [node name="InfosPanel" type="PanelContainer"]
 anchors_preset = 8
@@ -63,7 +38,6 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -78,6 +52,7 @@ theme_override_constants/separation = 50
 theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
 
 [node name="Text" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Tap anywhere where there is no button and drag to rotate the camera.
 
@@ -86,22 +61,3 @@ Use the arrows on the faces of the cube to rotate a layer.
 Good luck :)"
 horizontal_alignment = 1
 autowrap_mode = 3
-
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
-
-[node name="OK" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_styles/focus = SubResource("StyleBoxEmpty_iotsf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xa8c5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lc2xo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_xa8c5")
-text = "OK"
-icon = ExtResource("1_8metx")
-expand_icon = true
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/OK" to="." method="_on_ok_pressed"]

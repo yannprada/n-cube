@@ -4,7 +4,7 @@ extends Control
 @export var options_panel: PanelContainer
 @export var infos_panel: PanelContainer
 
-signal new_game(size: int, moves: int)
+signal new_game
 signal button_click
 signal cube_clicked
 
@@ -23,8 +23,8 @@ func toggle_panel(target_panel: PanelContainer) -> void:
 
 # NEW GAME
 func _on_new_game_ok_pressed() -> void:
-	new_game.emit(Config.cube_size, Config.scrambling_moves)
 	%NewGame.disabled = true
+	new_game.emit()
 
 
 func on_rotating_done() -> void:

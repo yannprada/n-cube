@@ -1,10 +1,10 @@
 extends Node
 
 
-func _on_ui_new_game(size: int, moves: int) -> void:
+func _on_ui_new_game() -> void:
 	%World.clear()
-	%World.generate(size)
-	%World.scramble(moves)
+	%World.generate(Config.cube_size)
+	%World.scramble(Config.scrambling_moves)
 
 
 func _on_ui_button_click() -> void:

@@ -43,6 +43,7 @@ func scramble(moves: int) -> void:
 		var layer = pos * axis.abs()
 		var tween = %RubiksCube.rotate_layer(layer, axis)
 		await tween.finished
+	
 	rotating_done.emit()
 
 
