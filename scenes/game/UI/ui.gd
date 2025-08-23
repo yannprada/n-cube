@@ -6,6 +6,7 @@ extends Control
 
 signal new_game(size: int, moves: int)
 signal button_click
+signal cube_clicked
 
 
 func _ready() -> void:
@@ -44,12 +45,6 @@ func _on_new_game_pressed() -> void:
 
 
 # OPTIONS
-func _on_options_ok_pressed(animation_length: float) -> void:
-	Config.animation_length = animation_length
-	Config.save()
-	button_click.emit()
-
-
 func _on_options_pressed() -> void:
 	toggle_panel(options_panel)
 	button_click.emit()
@@ -84,3 +79,7 @@ func _on_zoom_out_button_down() -> void:
 
 func _on_zoom_out_button_up() -> void:
 	_fire_action('Zoom Out', false)
+
+
+func _on_cube_clicked() -> void:
+	cube_clicked.emit()

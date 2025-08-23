@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cry8p2uetebcl"]
+[gd_scene load_steps=7 format=3 uid="uid://cry8p2uetebcl"]
 
 [ext_resource type="Script" uid="uid://bs8ynhur3lqd3" path="res://scenes/game/UI/options_panel.gd" id="1_g2s7c"]
 [ext_resource type="PackedScene" uid="uid://dw6vahsano2yk" path="res://scenes/label_slider/label_slider.tscn" id="1_j483m"]
-[ext_resource type="Texture2D" uid="uid://bmmk0v02h1w1j" path="res://assets/cancel75.png" id="2_g2s7c"]
 [ext_resource type="PackedScene" uid="uid://biqcfjfvwqhbf" path="res://scenes/spinbox_with_buttons/spinbox_with_buttons.tscn" id="2_od23m"]
-[ext_resource type="Texture2D" uid="uid://bkhfa3ms27732" path="res://assets/ok75.png" id="3_od23m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -18,54 +16,6 @@ font_size = 30
 font_color = Color(1, 0.453333, 0.2, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc2xo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_215e1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sc4i"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.588235, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80cx4"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iotsf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa8c5"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0.5, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc2xo"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0.701961, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [node name="OptionsPanel" type="PanelContainer"]
 anchors_preset = 8
@@ -145,37 +95,7 @@ layout_mode = 2
 title = "Interface Volume"
 rounded = true
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Cancel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_215e1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7sc4i")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_80cx4")
-theme_override_styles/normal = SubResource("StyleBoxFlat_7sc4i")
-text = "CANCEL"
-icon = ExtResource("2_g2s7c")
-expand_icon = true
-
-[node name="OK" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_iotsf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xa8c5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lc2xo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_xa8c5")
-text = "OK"
-icon = ExtResource("3_od23m")
-expand_icon = true
-
+[connection signal="button_clicked" from="MarginContainer/VBoxContainer/HBoxContainer2/Length" to="." method="_on_length_button_clicked"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/Length" to="." method="_on_length_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/CubeSounds" to="." method="_on_cube_sounds_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/UISounds" to="." method="_on_ui_sounds_value_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]

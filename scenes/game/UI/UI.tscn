@@ -164,6 +164,6 @@ offset_bottom = 231.0
 [connection signal="button_up" from="BottomLeft/VBoxContainer/ZoomOut" to="." method="_on_zoom_out_button_up"]
 [connection signal="cancel" from="NewGamePanel" to="." method="on_button_click"]
 [connection signal="ok" from="NewGamePanel" to="." method="_on_new_game_ok_pressed"]
-[connection signal="cancel" from="OptionsPanel" to="." method="on_button_click"]
-[connection signal="ok" from="OptionsPanel" to="." method="_on_options_ok_pressed"]
+[connection signal="button_clicked" from="OptionsPanel" to="." method="on_button_click"]
+[connection signal="cube_clicked" from="OptionsPanel" to="." method="_on_cube_clicked"]
 [connection signal="ok" from="InfosPanel" to="." method="on_button_click"]
