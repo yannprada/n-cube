@@ -3,18 +3,16 @@ extends Control
 @export var new_game_panel: PanelContainer
 @export var options_panel: PanelContainer
 @export var infos_panel: PanelContainer
-@export var config: Resource
 
 signal new_game(size: int, moves: int)
 signal button_click
 
 
 func _ready() -> void:
-	config.load()
-	new_game_panel.init(config.cube_size, config.scrambling_moves)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Cube"), config.cube_volume)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("UI"), config.UI_volume)
-	options_panel.init(config.animation_length, config.cube_volume, config.UI_volume)
+	new_game_panel.init(Config.cube_size, Config.scrambling_moves)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Cube"), Config.cube_volume)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("UI"), Config.UI_volume)
+	options_panel.init(Config.animation_length, Config.cube_volume, Config.UI_volume)
 
 
 func on_button_click():
@@ -31,9 +29,9 @@ func toggle_panel(target_panel: PanelContainer) -> void:
 
 # NEW GAME
 func _on_new_game_ok_pressed(cube_size: int, scrambling_moves: int) -> void:
-	config.cube_size = cube_size
-	config.scrambling_moves = scrambling_moves
-	config.save()
+	Config.cube_size = cube_size
+	Config.scrambling_moves = scrambling_moves
+	Config.save()
 	new_game.emit(cube_size, scrambling_moves)
 	%NewGame.disabled = true
 
@@ -43,20 +41,20 @@ func on_rotating_done() -> void:
 
 
 func _on_new_game_pressed() -> void:
-	new_game_panel.init(config.cube_size, config.scrambling_moves)
+	new_game_panel.init(Config.cube_size, Config.scrambling_moves)
 	toggle_panel(new_game_panel)
 	button_click.emit()
 
 
 # OPTIONS
 func _on_options_ok_pressed(animation_length: float) -> void:
-	config.animation_length = animation_length
-	config.save()
+	Config.animation_length = animation_length
+	Config.save()
 	button_click.emit()
 
 
 func _on_options_pressed() -> void:
-	options_panel.init(config.animation_length, config.cube_volume, config.UI_volume)
+	options_panel.init(Config.animation_length, Config.cube_volume, Config.UI_volume)
 	toggle_panel(options_panel)
 	button_click.emit()
 
@@ -94,11 +92,11 @@ func _on_zoom_out_button_up() -> void:
 
 func _on_options_panel_cube_volume_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Cube"), value)
-	config.cube_volume = value
-	config.save()
+	Config.cube_volume = value
+	Config.save()
 
 
 func _on_options_panel_ui_volume_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("UI"), value)
-	config.UI_volume = value
-	config.save()
+	Config.UI_volume = value
+	Config.save()

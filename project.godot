@@ -14,6 +14,10 @@ config/name="Rubik's Cube"
 run/main_scene="uid://dknxotbcrytcs"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[autoload]
+
+Config="*res://config.gd"
+
 [display]
 
 window/size/viewport_width=480

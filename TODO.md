@@ -1,2 +1,2 @@
-- fix: new game panel values not saved
+- fix: volume sliders trigger change and erase config before init method
 - add button noise on +-

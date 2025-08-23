@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dcl4hnr4dyixa"]
-
-[ext_resource type="Script" uid="uid://cs6ww6gmhkiuc" path="res://config.gd" id="1_x30i3"]
-
-[resource]
-script = ExtResource("1_x30i3")
-cube_size = 3
-scrambling_moves = 25
-animation_length = 0.1

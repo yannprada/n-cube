@@ -6,6 +6,13 @@ signal cube_volume_changed(value: float)
 signal UI_volume_changed(value: float)
 
 
+func _ready() -> void:
+	print(Config.cube_volume)
+	print(Config.UI_volume)
+	%CubeSounds.init(Config.cube_volume)
+	%UISounds.init(Config.UI_volume)
+
+
 func init(animation_length: float, cube_volume: float, UI_volume: float) -> void:
 	%Length.value = animation_length
 	%CubeSounds.init(cube_volume)
