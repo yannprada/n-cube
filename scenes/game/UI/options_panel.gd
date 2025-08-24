@@ -39,3 +39,8 @@ func _on_length_value_changed(value: float) -> void:
 		# this prevents an on_change trigger before _ready
 		Config.animation_length = value
 		Config.save()
+
+
+func _on_close_button_pressed() -> void:
+	button_clicked.emit()
+	hide()

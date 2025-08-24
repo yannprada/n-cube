@@ -1,3 +1,2 @@
-- add close buttons on panels
 - license
 - publish

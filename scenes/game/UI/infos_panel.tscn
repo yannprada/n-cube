@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0p8xb7hloowu"]
+[gd_scene load_steps=6 format=3 uid="uid://d0p8xb7hloowu"]
 
 [ext_resource type="Script" uid="uid://dsco47fo8q75m" path="res://scenes/game/UI/infos_panel.gd" id="1_idg7t"]
+[ext_resource type="PackedScene" uid="uid://d2w300ihtd03b" path="res://scenes/game/UI/close_button.tscn" id="2_idg7t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -66,3 +67,15 @@ Press ⓘ again to close this window.
 Good luck! :)"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="MarginContainerClose" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseButton" parent="MarginContainerClose" instance=ExtResource("2_idg7t")]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainerClose/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0827oloabrwv"]
+[gd_scene load_steps=8 format=3 uid="uid://c0827oloabrwv"]
 
 [ext_resource type="Script" uid="uid://b5yrs1ifqsfj7" path="res://scenes/game/UI/new_game_panel.gd" id="1_h7dek"]
 [ext_resource type="PackedScene" uid="uid://biqcfjfvwqhbf" path="res://scenes/spinbox_with_buttons/spinbox_with_buttons.tscn" id="2_ubc1t"]
 [ext_resource type="Texture2D" uid="uid://c7c8fh4qy7sag" path="res://assets/shuffle75.png" id="3_cymch"]
+[ext_resource type="PackedScene" uid="uid://d2w300ihtd03b" path="res://scenes/game/UI/close_button.tscn" id="4_h7dek"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -117,6 +118,17 @@ theme_override_font_sizes/font_size = 30
 text = "GO!"
 icon = ExtResource("3_cymch")
 
+[node name="MarginContainerClose" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseButton" parent="MarginContainerClose" instance=ExtResource("4_h7dek")]
+layout_mode = 2
+
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/Size" to="." method="_on_size_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/Scrambles" to="." method="_on_scrambles_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GoButton" to="." method="_on_go_button_pressed"]
+[connection signal="pressed" from="MarginContainerClose/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,8 +1,8 @@
 extends PanelContainer
 
-signal ok
+signal button_clicked
 
 
-func _on_ok_pressed() -> void:
-	ok.emit()
+func _on_close_button_pressed() -> void:
+	button_clicked.emit()
 	hide()

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c7c8fh4qy7sag" path="res://assets/shuffle75.png" id="2_wgnrc"]
 [ext_resource type="Texture2D" uid="uid://7m30y7ntsdnc" path="res://assets/shuffle75pressed.png" id="3_84lt7"]
 [ext_resource type="Texture2D" uid="uid://bugty0dcygaqb" path="res://assets/i75.png" id="3_v0fiw"]
+[ext_resource type="Texture2D" uid="uid://bl5ddmrbx5glv" path="res://assets/settings75.png" id="4_v0fiw"]
 [ext_resource type="Texture2D" uid="uid://drnmjqffwvu1b" path="res://assets/i75pressed.png" id="4_xqeyu"]
 [ext_resource type="Texture2D" uid="uid://bwabsrmtmyugy" path="res://assets/settings75pressed.png" id="5_ydonv"]
 [ext_resource type="Texture2D" uid="uid://b1i7vtlxywnv6" path="res://assets/zoom_in50.png" id="6_d5j55"]
@@ -16,9 +17,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_1p530"]
 font_size = 10
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d5j55"]
-load_path = "res://.godot/imported/settings75.png-4e6096e2f8a5e0760e985fc9e8e81b41.ctex"
 
 [node name="UI" type="Control" node_paths=PackedStringArray("new_game_panel", "options_panel", "infos_panel")]
 layout_mode = 3
@@ -79,7 +77,7 @@ theme_override_constants/margin_right = 10
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Options"
-texture_normal = SubResource("CompressedTexture2D_d5j55")
+texture_normal = ExtResource("4_v0fiw")
 texture_pressed = ExtResource("5_ydonv")
 stretch_mode = 4
 
@@ -166,4 +164,4 @@ offset_bottom = 231.0
 [connection signal="ok" from="NewGamePanel" to="." method="_on_new_game_ok_pressed"]
 [connection signal="button_clicked" from="OptionsPanel" to="." method="on_button_click"]
 [connection signal="cube_clicked" from="OptionsPanel" to="." method="_on_cube_clicked"]
-[connection signal="ok" from="InfosPanel" to="." method="on_button_click"]
+[connection signal="button_clicked" from="InfosPanel" to="." method="on_button_click"]

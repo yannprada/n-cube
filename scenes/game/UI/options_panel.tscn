@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cry8p2uetebcl"]
+[gd_scene load_steps=8 format=3 uid="uid://cry8p2uetebcl"]
 
 [ext_resource type="Script" uid="uid://bs8ynhur3lqd3" path="res://scenes/game/UI/options_panel.gd" id="1_g2s7c"]
 [ext_resource type="PackedScene" uid="uid://dw6vahsano2yk" path="res://scenes/label_slider/label_slider.tscn" id="1_j483m"]
 [ext_resource type="PackedScene" uid="uid://biqcfjfvwqhbf" path="res://scenes/spinbox_with_buttons/spinbox_with_buttons.tscn" id="2_od23m"]
+[ext_resource type="PackedScene" uid="uid://d2w300ihtd03b" path="res://scenes/game/UI/close_button.tscn" id="4_g2s7c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -95,7 +96,18 @@ layout_mode = 2
 title = "Interface Volume"
 rounded = true
 
+[node name="MarginContainerClose" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseButton" parent="MarginContainerClose" instance=ExtResource("4_g2s7c")]
+layout_mode = 2
+
 [connection signal="button_clicked" from="MarginContainer/VBoxContainer/HBoxContainer2/Length" to="." method="_on_length_button_clicked"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/Length" to="." method="_on_length_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/CubeSounds" to="." method="_on_cube_sounds_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/UISounds" to="." method="_on_ui_sounds_value_changed"]
+[connection signal="pressed" from="MarginContainerClose/CloseButton" to="." method="_on_close_button_pressed"]
