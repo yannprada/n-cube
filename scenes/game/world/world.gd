@@ -26,7 +26,7 @@ func generate(size: int = 3) -> void:
 						faces_normals.append(Vector3i(0, 0, values[n]))
 				
 				var pos = Vector3(i + offset, j + offset, k + offset)
-				%RubiksCube.add_box(pos, faces_normals)
+				%Cube.add_box(pos, faces_normals)
 				if len(faces_normals) > 1:
 					%Arrows.add_arrows(pos, faces_normals)
 				if len(faces_normals) > 0:
@@ -34,21 +34,21 @@ func generate(size: int = 3) -> void:
 
 
 func scramble(moves: int) -> void:
-	if %RubiksCube.get_child_count() == 0:
+	if %Cube.get_child_count() == 0:
 		return
 	
 	for n in moves:
 		var pos = exterior_positions[randi_range(0, exterior_positions.size()-1)]
 		var axis = AXES[randi_range(0, AXES.size()-1)]
 		var layer = pos * axis.abs()
-		var tween = %RubiksCube.rotate_layer(layer, axis)
+		var tween = %Cube.rotate_layer(layer, axis)
 		await tween.finished
 	
 	rotating_done.emit()
 
 
 func clear() -> void:
-	%RubiksCube.clear()
+	%Cube.clear()
 	%Arrows.clear()
 
 

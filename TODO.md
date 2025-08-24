@@ -1,1 +1,3 @@
+- change name for copyright reasons
 - change package name (Exports / Android / Package Unique Name)
+- publish
