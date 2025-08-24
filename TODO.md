@@ -1,2 +1,3 @@
 - license
+- update alpha release on github
 - publish
