@@ -1,3 +1,3 @@
-- change name for copyright reasons
-- change package name (Exports / Android / Package Unique Name)
+- add close buttons on panels
+- license
 - publish

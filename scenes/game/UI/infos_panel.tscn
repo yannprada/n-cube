@@ -54,10 +54,15 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
 [node name="Text" type="Label" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "Tap anywhere where there is no button and drag to rotate the camera.
+theme_override_font_sizes/font_size = 16
+text = "To rotate the camera, tap and drag anywhere without a button.
 
-Use the arrows on the faces of the cube to rotate a layer.
+To zoom in or out, just keep pressing the zoom buttons at the bottom left.
 
-Good luck :)"
+Use the arrows on the cube's faces to rotate a layer.
+
+Press ⓘ again to close this window.
+
+Good luck! :)"
 horizontal_alignment = 1
 autowrap_mode = 3
