@@ -6,6 +6,7 @@ signal button_clicked
 
 func _ready() -> void:
 	%Length.value = Config.animation_length
+	%Scrambles.value = Config.scrambling_moves
 	%CubeSounds.init(Config.cube_volume)
 	%UISounds.init(Config.UI_volume)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Cube"), Config.cube_volume)
@@ -44,3 +45,10 @@ func _on_length_value_changed(value: float) -> void:
 func _on_close_button_pressed() -> void:
 	button_clicked.emit()
 	hide()
+
+
+func _on_scrambles_value_changed(value: int) -> void:
+	if is_node_ready():
+		Config.scrambling_moves = value
+		Config.save()
+		button_clicked.emit()

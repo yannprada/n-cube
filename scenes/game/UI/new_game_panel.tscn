@@ -75,28 +75,6 @@ value = 10.0
 _min = 2.0
 _max = 9.0
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 40
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lc2xo")
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Scrambling 
-rotations"
-
-[node name="Scrambles" parent="MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_ubc1t")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-value = 25.0
-_max = 50.0
-increment = 5.0
-
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -120,6 +98,8 @@ icon = ExtResource("3_cymch")
 
 [node name="MarginContainerClose" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -129,6 +109,5 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/Size" to="." method="_on_size_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/Scrambles" to="." method="_on_scrambles_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GoButton" to="." method="_on_go_button_pressed"]
 [connection signal="pressed" from="MarginContainerClose/CloseButton" to="." method="_on_close_button_pressed"]

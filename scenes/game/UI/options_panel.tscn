@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cry8p2uetebcl"]
+[gd_scene load_steps=9 format=3 uid="uid://cry8p2uetebcl"]
 
 [ext_resource type="Script" uid="uid://bs8ynhur3lqd3" path="res://scenes/game/UI/options_panel.gd" id="1_g2s7c"]
 [ext_resource type="PackedScene" uid="uid://dw6vahsano2yk" path="res://scenes/label_slider/label_slider.tscn" id="1_j483m"]
@@ -17,6 +17,8 @@ font_size = 30
 font_color = Color(1, 0.453333, 0.2, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc2xo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g2s7c"]
 
 [node name="OptionsPanel" type="PanelContainer"]
 anchors_preset = 8
@@ -74,6 +76,28 @@ _max = 1.0
 increment = 0.1
 digits = 1
 
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g2s7c")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Scrambling 
+rotations"
+
+[node name="Scrambles" parent="MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_od23m")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+value = 25.0
+_max = 50.0
+increment = 5.0
+
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -98,6 +122,8 @@ rounded = true
 
 [node name="MarginContainerClose" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -108,6 +134,7 @@ layout_mode = 2
 
 [connection signal="button_clicked" from="MarginContainer/VBoxContainer/HBoxContainer2/Length" to="." method="_on_length_button_clicked"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/Length" to="." method="_on_length_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/Scrambles" to="." method="_on_scrambles_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/CubeSounds" to="." method="_on_cube_sounds_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/UISounds" to="." method="_on_ui_sounds_value_changed"]
 [connection signal="pressed" from="MarginContainerClose/CloseButton" to="." method="_on_close_button_pressed"]
